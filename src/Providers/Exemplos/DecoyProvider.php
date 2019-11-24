@@ -1,6 +1,6 @@
 <?php
 
-namespace Siravel\Providers\Exemplos;
+namespace Audit\Providers\Exemplos;
 
 use App;
 use Config;

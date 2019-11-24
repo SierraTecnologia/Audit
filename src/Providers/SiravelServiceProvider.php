@@ -1,11 +1,11 @@
 <?php
 
-namespace Siravel\Providers;
+namespace Audit\Providers;
 
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 
-class SiravelServiceProvider extends ServiceProvider
+class AuditServiceProvider extends ServiceProvider
 {
     /**
      * Alias the services in the boot.

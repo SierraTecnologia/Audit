@@ -3,7 +3,7 @@
  * Nao é usado 
  */
 
-namespace Siravel\Providers\Exemplos;
+namespace Audit\Providers\Exemplos;
 
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
@@ -11,7 +11,7 @@ use Illuminate\Support\ServiceProvider;
 /**
  * Class AppServiceProvider.
  *
- * @package Siravel\Providers
+ * @package Audit\Providers
  */
 class HomeServiceProvider extends ServiceProvider
 {
@@ -129,18 +129,18 @@ class HomeServiceProvider extends ServiceProvider
             });
 
         $this->app->bind(
-            \Siravel\Services\Writelabel\Manifest\Contracts\Manifest::class,
-            \Siravel\Services\Writelabel\Manifest\AppManifest::class
+            \Audit\Services\Writelabel\Manifest\Contracts\Manifest::class,
+            \Audit\Services\Writelabel\Manifest\AppManifest::class
         );
 
         $this->app->bind(
-            \Siravel\Services\Writelabel\SiteMap\Contracts\SiteMapBuilder::class,
-            \Siravel\Services\Writelabel\SiteMap\AppSiteMapBuilder::class
+            \Audit\Services\Writelabel\SiteMap\Contracts\SiteMapBuilder::class,
+            \Audit\Services\Writelabel\SiteMap\AppSiteMapBuilder::class
         );
 
         $this->app->bind(
-            \Siravel\Services\Writelabel\Rss\Contracts\RssBuilder::class,
-            \Siravel\Services\Writelabel\Rss\AppRssBuilder::class
+            \Audit\Services\Writelabel\Rss\Contracts\RssBuilder::class,
+            \Audit\Services\Writelabel\Rss\AppRssBuilder::class
         );
 
         $this->app->bind(

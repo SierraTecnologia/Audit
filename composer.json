@@ -1,6 +1,6 @@
 {
-    "name": "sierratecnologia/finder",
-    "description": "Recursos para Desenvolvimento Complexo",
+    "name": "sierratecnologia/audit",
+    "description": "Audit",
     "license": "MIT",
     "authors": [
         {
@@ -10,26 +10,12 @@
     ],
     "require": {
         "php": "^7.3.0",
-        "symfony/finder": "^5.5.0",
-        "cloudflare/sdk": "*",
-        "deployer/deployer": "^6.4",
-        "devio/pipedrive": "*",
-        "fideloper/proxy": "^4.0",
-        "sebastian/diff": "*",
-        "srmklive/flysystem-dropbox-v2": "*",
-        "google/photos-library": "^1.4",
-        "intervention/image": "^2.4",
-        "intervention/imagecache": "^2.3",
-        "spatie/laravel-medialibrary": "^7.9.0",
-        "league/climate": "^3.5"
+        "sierratecnologia/informate": "dev-master"
     },
     "autoload": {
         "psr-4": {
-            "SiFinder\\": "src/"
-        },
-        "files": [
-            "help/functions.php"
-        ]
+            "Audit\\": "src/"
+        }
     },
     "bin": ["bin/observador"],
     "scripts": {
@@ -40,16 +26,23 @@
     "repositories": [
         {
             "type": "path",
-            "url": "../Facilitador",
+            "url": "../Informate",
             "options": {
-                "symlink": false
+                "symlink": true
             }
         },
         {
             "type": "path",
-            "url": "../Locaravel",
+            "url": "../Populate",
             "options": {
-                "symlink": false
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../Population",
+            "options": {
+                "symlink": true
             }
         }
     ],
@@ -58,10 +51,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "SiFinder\\SiFinderProvider"
-            ],
-            "dont-discover": [
-                "laravel/cashier"
+                "Audit\\AuditProvider"
             ]
         }
     }
