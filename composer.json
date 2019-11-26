@@ -18,7 +18,7 @@
             "Audit\\": "src/"
         }
     },
-    "bin": ["bin/observador"],
+    "bin": ["bin/audit"],
     "scripts": {
         "post-install-cmd": [],
         "post-update-cmd": [],
