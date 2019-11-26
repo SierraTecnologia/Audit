@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c98fa632aa3f0fb4ded4028ee3425ec9",
+    "content-hash": "6a85193c3a1b11c90fb6aa24134def83",
     "packages": [
         {
             "name": "kassner/log-parser",
@@ -102,13 +102,50 @@
             "transport-options": {
                 "symlink": true
             }
+        },
+        {
+            "name": "sierratecnologia/population",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "../Population",
+                "reference": "de175863f9b6d9af4cb1f651e7c51db8d6885d0b"
+            },
+            "require": {
+                "sierratecnologia/informate": "dev-master"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Population\\PopulationProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Population\\": "src/"
+                }
+            },
+            "scripts": {
+                "post-install-cmd": [],
+                "post-update-cmd": [],
+                "post-create-project-cmd": []
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Population",
+            "transport-options": {
+                "symlink": true
+            }
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "sierratecnologia/informate": 20
+        "sierratecnologia/population": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
