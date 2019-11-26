@@ -11,6 +11,7 @@
     "require": {
         "php": "^7.3.0",
         "kassner/log-parser": "*",
+        "rap2hpoutre/laravel-log-viewer": "*",
         "sierratecnologia/population": "dev-master"
     },
     "autoload": {
