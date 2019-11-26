@@ -10,6 +10,7 @@
     ],
     "require": {
         "php": "^7.3.0",
+        "kassner/log-parser": "*",
         "sierratecnologia/informate": "dev-master"
     },
     "autoload": {
@@ -26,21 +27,7 @@
     "repositories": [
         {
             "type": "path",
-            "url": "../Informate",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "../Populate",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "../Population",
+            "url": "../**",
             "options": {
                 "symlink": true
             }

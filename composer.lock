@@ -4,8 +4,61 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "546b47eda05a1082908f6315b09056ac",
+    "content-hash": "c98fa632aa3f0fb4ded4028ee3425ec9",
     "packages": [
+        {
+            "name": "kassner/log-parser",
+            "version": "1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kassner/log-parser.git",
+                "reference": "ea846b7edf24a421c5484902b2501c9c8e065796"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kassner/log-parser/zipball/ea846b7edf24a421c5484902b2501c9c8e065796",
+                "reference": "ea846b7edf24a421c5484902b2501c9c8e065796",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.4"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.11",
+                "phpmd/phpmd": "~2.1",
+                "phpunit/phpunit": "~4.4",
+                "sebastian/phpcpd": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Kassner": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Rafael Kassner",
+                    "email": "kassner@gmail.com",
+                    "homepage": "http://www.kassner.com.br/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP Log Parser Library",
+            "homepage": "http://github.com/kassner/log-parser",
+            "keywords": [
+                "apache",
+                "format",
+                "log",
+                "log-format",
+                "nginx",
+                "parser"
+            ],
+            "time": "2019-02-04T07:43:30+00:00"
+        },
         {
             "name": "sierratecnologia/informate",
             "version": "dev-master",
