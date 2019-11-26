@@ -35,7 +35,7 @@ class AuditRouteProvider extends ServiceProvider
      */
     public function map(Router $router)
     {
-        $router->middleware('siravel-analytics', Analytics::class);
+        $router->middleware('audit-analytics', Analytics::class);
 
         $router->group([
             'namespace' => $this->namespace,

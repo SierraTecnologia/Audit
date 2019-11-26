@@ -11,7 +11,7 @@
     "require": {
         "php": "^7.3.0",
         "kassner/log-parser": "*",
-        "sierratecnologia/informate": "dev-master"
+        "sierratecnologia/population": "dev-master"
     },
     "autoload": {
         "psr-4": {
