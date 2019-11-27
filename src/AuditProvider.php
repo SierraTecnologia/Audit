@@ -11,7 +11,6 @@ class AuditProvider extends ServiceProvider
 {
     public static $providers = [
         \Audit\Providers\AuditEventServiceProvider::class,
-        \Audit\Providers\AuditServiceProvider::class,
         \Audit\Providers\AuditRouteProvider::class,
 
         \Population\PopulationProvider::class,
