@@ -463,7 +463,7 @@
             "dist": {
                 "type": "path",
                 "url": "../Informate",
-                "reference": "7e6602d1663dab67ad1f53c4967c3b7d62c6e7b2"
+                "reference": "6b0a5f3ffc67af14374835173c0885a90a941ffa"
             },
             "require": {
                 "php": "^7.3.0"
@@ -507,7 +507,7 @@
             "dist": {
                 "type": "path",
                 "url": "../Population",
-                "reference": "d4311e7bfacaebd36d76291232355bdddff7b944"
+                "reference": "60581983827ce63968e8f9ce19491df336554c19"
             },
             "require": {
                 "sierratecnologia/informate": "dev-master"
