@@ -14,6 +14,11 @@ class AuditProvider extends ServiceProvider
         \Audit\Providers\AuditRouteProvider::class,
 
         \Population\PopulationProvider::class,
+
+        /**
+         * Externos
+         */
+        \Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
     ];
 
     /**
