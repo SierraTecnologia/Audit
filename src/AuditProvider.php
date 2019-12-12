@@ -9,6 +9,10 @@ use Illuminate\Support\Collection;
 
 class AuditProvider extends ServiceProvider
 {
+    public static $aliasProviders = [
+        
+    ];
+
     public static $providers = [
         \Audit\Providers\AuditRouteProvider::class,
 
@@ -28,7 +32,7 @@ class AuditProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__.'../resources/views' => base_path('resources/views/vendor/audit'),
-        ], 'SierraTecnologia Audit');
+        ], 'audit');
     }
 
     /**
@@ -55,10 +59,23 @@ class AuditProvider extends ServiceProvider
         $this->commands([]);
     }
 
+    /**
+     * Load Alias and Providers
+     */
     private function setProviders()
     {
+        $this->setDependencesAlias();
         (new Collection(self::$providers))->map(function ($provider) {
-            $this->app->register($provider);
+            if (class_exists($provider)) {
+                $this->app->register($provider);
+            }
+        });
+    }
+    private function setDependencesAlias()
+    {
+        $loader = AliasLoader::getInstance();
+        (new Collection(self::$aliasProviders))->map(function ($class, $alias) use ($loader) {
+            $loader->alias($alias, $class);
         });
     }
 
