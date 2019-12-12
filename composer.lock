@@ -75,16 +75,16 @@
         },
         {
             "name": "illuminate/contracts",
-            "version": "v6.6.2",
+            "version": "v6.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
-                "reference": "18179e38cdba814b3b1e1f01d3f08c2cf3b2e9ca"
+                "reference": "484727dc42f1c9dbffb2182f6fb0d01ca1aba556"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/contracts/zipball/18179e38cdba814b3b1e1f01d3f08c2cf3b2e9ca",
-                "reference": "18179e38cdba814b3b1e1f01d3f08c2cf3b2e9ca",
+                "url": "https://api.github.com/repos/illuminate/contracts/zipball/484727dc42f1c9dbffb2182f6fb0d01ca1aba556",
+                "reference": "484727dc42f1c9dbffb2182f6fb0d01ca1aba556",
                 "shasum": ""
             },
             "require": {
@@ -115,20 +115,20 @@
             ],
             "description": "The Illuminate Contracts package.",
             "homepage": "https://laravel.com",
-            "time": "2019-12-05T11:59:48+00:00"
+            "time": "2019-12-06T13:40:59+00:00"
         },
         {
             "name": "illuminate/support",
-            "version": "v6.6.2",
+            "version": "v6.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "a384697b285c7f016828c2ba5349960653a20102"
+                "reference": "e720ac31b6baf101ce0da7a58491e1d3ea2a85ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/a384697b285c7f016828c2ba5349960653a20102",
-                "reference": "a384697b285c7f016828c2ba5349960653a20102",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/e720ac31b6baf101ce0da7a58491e1d3ea2a85ce",
+                "reference": "e720ac31b6baf101ce0da7a58491e1d3ea2a85ce",
                 "shasum": ""
             },
             "require": {
@@ -176,7 +176,7 @@
             ],
             "description": "The Illuminate Support package.",
             "homepage": "https://laravel.com",
-            "time": "2019-12-05T12:05:44+00:00"
+            "time": "2019-12-06T16:38:15+00:00"
         },
         {
             "name": "kassner/log-parser",
@@ -463,7 +463,7 @@
             "dist": {
                 "type": "path",
                 "url": "../Informate",
-                "reference": "fec107d66e23f1c920fe48f11d1e196da9e64164"
+                "reference": "81434bf3e31dfafa5b2d88aa8ef11086404cbd04"
             },
             "require": {
                 "php": "^7.3.0"
@@ -507,7 +507,7 @@
             "dist": {
                 "type": "path",
                 "url": "../Population",
-                "reference": "1acd35c025bf6c325e790276fdc8db4d838f468f"
+                "reference": "c58aa5c949ebfe1bb2a6bec00422a790b5543bef"
             },
             "require": {
                 "sierratecnologia/informate": "dev-master"
