@@ -4,11 +4,11 @@ namespace Audit\Services;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Schema;
-use Audit\Models\System\Trackings;
+use Audit\Models\System\Audits;
 
-class TrackingsService
+class AuditsService
 {
-    public function __construct(Trackings $model)
+    public function __construct(Audits $model)
     {
         $this->model = $model;
     }
@@ -30,7 +30,7 @@ class TrackingsService
         $business = 0;
         $user = 0;
 
-        if (Schema::hasTable(config('cms.db-prefix', '').'trackings')) {
+        if (Schema::hasTable(config('cms.db-prefix', '').'audits')) {
             $this->model->create([
                 'route' => $route,
                 'business' => $business,

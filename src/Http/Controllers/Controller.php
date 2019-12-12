@@ -1,6 +1,6 @@
 <?php
 
-namespace Tracking\Http\Controllers;
+namespace Audit\Http\Controllers;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;

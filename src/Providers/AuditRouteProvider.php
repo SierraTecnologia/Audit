@@ -4,7 +4,7 @@ namespace Audit\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
-use SiObject\Http\Middleware\Analytics;
+use Audit\Http\Middleware\Analytics;
 use Audit\Http\Middleware\isAjax;
 
 class AuditRouteProvider extends ServiceProvider

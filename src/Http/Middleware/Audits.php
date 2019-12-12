@@ -1,11 +1,11 @@
 <?php
 
-namespace SiObject\Http\Middleware;
+namespace Audit\Http\Middleware;
 
 use Closure;
-use Tracking\Services\TrackingsService;
+use Audit\Services\AuditsService;
 
-class Trackings
+class Audits
 {
     /**
      * Handle an incoming request.
@@ -18,7 +18,7 @@ class Trackings
     public function handle($request, Closure $next)
     {
         if (!$request->ajax()) {
-            app(TrackingsService::class)->log($request);
+            app(AuditsService::class)->log($request);
         }
 
         return $next($request);

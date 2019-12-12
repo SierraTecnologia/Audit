@@ -2,10 +2,10 @@
 
 namespace Audit\Models;
 
-class Trackings extends Model
+class Audits extends Model
 {
     
-    public $table = 'trackings';
+    public $table = 'audits';
 
     public $primaryKey = 'id';
 
