@@ -12,6 +12,8 @@
         "php": "^7.3.0",
         "kassner/log-parser": "*",
         "rap2hpoutre/laravel-log-viewer": "*",
+        "laravel/telescope": "^2.0",
+        "spatie/laravel-activitylog": "^3.6",
         "sierratecnologia/population": "dev-master"
     },
     "autoload": {

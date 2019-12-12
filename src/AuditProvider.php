@@ -10,7 +10,6 @@ use Illuminate\Support\Collection;
 class AuditProvider extends ServiceProvider
 {
     public static $providers = [
-        \Audit\Providers\AuditEventServiceProvider::class,
         \Audit\Providers\AuditRouteProvider::class,
 
         \Population\PopulationProvider::class,
@@ -18,6 +17,7 @@ class AuditProvider extends ServiceProvider
         /**
          * Externos
          */
+        \Laravel\Telescope\TelescopeServiceProvider::class,
         \Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
     ];
 
