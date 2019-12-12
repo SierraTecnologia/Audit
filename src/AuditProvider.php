@@ -153,7 +153,7 @@ class AuditProvider extends ServiceProvider
             // Paths
             $this->getPublishesPath('config/audit') => config_path('audit'),
             // Files
-            $this->getPublishesPath('config/horizon.php') => config_path('horizon.php'),
+            $this->getPublishesPath('config/activitylog.php') => config_path('activitylog.php'),
             $this->getPublishesPath('config/larametrics.php') => config_path('larametrics.php'),
             $this->getPublishesPath('config/slow-query-logger.php') => config_path('slow-query-logger.php'),
             $this->getPublishesPath('config/stats.php') => config_path('stats.php')
