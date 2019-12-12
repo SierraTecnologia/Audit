@@ -154,10 +154,10 @@ class AuditProvider extends ServiceProvider
             $this->getPublishesPath('config/audit') => config_path('audit'),
             // Files
             $this->getPublishesPath('config/activitylog.php') => config_path('activitylog.php'),
-            $this->getPublishesPath('config/larametrics.php') => config_path('larametrics.php'),
-            $this->getPublishesPath('config/slow-query-logger.php') => config_path('slow-query-logger.php'),
-            $this->getPublishesPath('config/stats.php') => config_path('stats.php')
-        ], 'config');
+            $this->getPublishesPath('config/logging.php') => config_path('logging.php'),
+            $this->getPublishesPath('config/logviewer.php') => config_path('logviewer.php'),
+            $this->getPublishesPath('config/telescope.php') => config_path('telescope.php')
+        ], 'sitec-config');
 
         // // Publish audit css and js to public directory
         // $this->publishes([
@@ -170,7 +170,7 @@ class AuditProvider extends ServiceProvider
         $this->publishes([
             $this->getPublishesPath('public/horizon') => public_path('vendor/horizon'),
             $this->getPublishesPath('public/larametrics') => public_path('vendor/larametrics')
-        ], 'public');
+        ], 'sitec-public');
 
 
         $this->loadViews();
@@ -186,7 +186,7 @@ class AuditProvider extends ServiceProvider
         $this->publishes([
             $viewsPath => base_path('resources/views/vendor/audit'),
             $this->getPublishesPath('laravel-log-viewer') => base_path('resources/views/vendor/laravel-log-viewer'),
-        ], 'views');
+        ], ['views', 'sitec-views']);
 
 
         // // Publish lanaguage files
