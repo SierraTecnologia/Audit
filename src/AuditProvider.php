@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Collection;
+use Illuminate\Foundation\AliasLoader;
+use Illuminate\Support\Facades\Schema;
+use Route;
 
 class AuditProvider extends ServiceProvider
 {
