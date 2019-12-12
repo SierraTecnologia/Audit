@@ -61,7 +61,6 @@ class AuditProvider extends ServiceProvider
         $this->mergeConfigFrom($this->getPublishesPath('config/activitylog.php'), 'activitylog');
         $this->mergeConfigFrom($this->getPublishesPath('config/logging.php'), 'logging');
         $this->mergeConfigFrom($this->getPublishesPath('config/logviewer.php'), 'logviewer');
-        $this->mergeConfigFrom($this->getPublishesPath('config/form-maker.php'), 'form-maker');
         $this->mergeConfigFrom($this->getPublishesPath('config/telescope.php'), 'telescope');
 
         // Register external packages
@@ -160,10 +159,10 @@ class AuditProvider extends ServiceProvider
             $this->getPublishesPath('config/stats.php') => config_path('stats.php')
         ], 'config');
 
-        // Publish audit css and js to public directory
-        $this->publishes([
-            $this->getDistPath() => public_path('assets/audit')
-        ], 'assets');
+        // // Publish audit css and js to public directory
+        // $this->publishes([
+        //     $this->getDistPath() => public_path('assets/audit')
+        // ], 'assets');
 
 
 
@@ -186,6 +185,7 @@ class AuditProvider extends ServiceProvider
         $this->loadViewsFrom($viewsPath, 'audit');
         $this->publishes([
             $viewsPath => base_path('resources/views/vendor/audit'),
+            $this->getPublishesPath('laravel-log-viewer') => base_path('resources/views/vendor/laravel-log-viewer'),
         ], 'views');
 
 
@@ -205,6 +205,24 @@ class AuditProvider extends ServiceProvider
         // $this->publishes([
         //     $translationsPath => resource_path('lang/vendor/audit'),
         // ], 'translations');// @todo ou lang, verificar (invez de translations)
+    }
+
+    /**
+     * Configs Paths
+     */
+    private function getResourcesPath($folder)
+    {
+        return __DIR__.'/../resources/'.$folder;
+    }
+
+    private function getPublishesPath($folder)
+    {
+        return __DIR__.'/../publishes/'.$folder;
+    }
+
+    private function getDistPath($folder = '')
+    {
+        return __DIR__.'/../dist/'.$folder;
     }
 
     /**
