@@ -9,18 +9,35 @@ use Illuminate\Support\Collection;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Schema;
 use Route;
+use Illuminate\Routing\Router;
+use Audit\Http\Middleware\Audits;
+use Audit\Http\Middleware\isAjax;
 
 class AuditProvider extends ServiceProvider
 {
+    /**
+     * This namespace is applied to the controller routes in your routes file.
+     *
+     * In addition, it is set as the URL generator's root namespace.
+     *
+     * @var string
+     */
+    protected $namespace = 'Audit\Http\Controllers';
+
     public static $aliasProviders = [
         
     ];
 
     public static $providers = [
-        \Audit\Providers\AuditRouteProvider::class,
-
+        /**
+         * Configuracoes
+         */
+        \Audit\Providers\TelescopeServiceProvider::class,
+        
+        /**
+         * 
+         */
         \Population\PopulationProvider::class,
-
         /**
          * Externos
          */
@@ -77,6 +94,23 @@ class AuditProvider extends ServiceProvider
         */
 
         $this->commands([]);
+    }
+
+    /**
+     * Define the routes for the application.
+     *
+     * @param \Illuminate\Routing\Router $router
+     */
+    public function map(Router $router)
+    {
+        $router->middleware('audits', Audits::class);
+
+        $router->group([
+            'namespace' => $this->namespace,
+        ], function ($router) {
+            // $router->middleware('isAjax', isAjax::class);
+            require __DIR__.'/../Routes/web.php';
+        });
     }
 
     /**

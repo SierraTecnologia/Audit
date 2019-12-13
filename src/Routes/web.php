@@ -2,7 +2,11 @@
 
 Route::group(['middleware' => ['web']], function () {  
     // Route::group(['middleware' => ['audit-analytics']], function () {
-    Route::group(['as' => 'audit.'], function () {
-        Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+    Route::prefix('audit')->group(function () {
+
+        Route::group(['as' => 'audit.'], function () {
+            Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+        });
+        
     });
-});    
+});
