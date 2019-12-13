@@ -1,6 +1,16 @@
-@extends('layouts.app')
-
-@section('css')<style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Laravel log viewer</title>
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
+  <style>
     body {
       padding: 25px;
     }
@@ -58,48 +68,10 @@
     }
 
   </style>
-@stop
-
-@section('js')
-    <!-- jQuery for Bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
-    <!-- FontAwesome -->
-    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-    <!-- Datatables -->
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
-    <script>
-    $(document).ready(function () {
-        $('.table-container tr').on('click', function () {
-        $('#' + $(this).data('display')).toggle();
-        });
-        $('#table-log').DataTable({
-        "order": [$('#table-log').data('orderingIndex'), 'desc'],
-        "stateSave": true,
-        "stateSaveCallback": function (settings, data) {
-            window.localStorage.setItem("datatable", JSON.stringify(data));
-        },
-        "stateLoadCallback": function (settings) {
-            var data = JSON.parse(window.localStorage.getItem("datatable"));
-            if (data) data.start = 0;
-            return data;
-        }
-        });
-        $('#delete-log, #clean-log, #delete-all-log').click(function () {
-        return confirm('Are you sure?');
-        });
-    });
-    </script>
-@stop
-
-@section('content')
-
-<div class="row">
+</head>
+<body>
+<div class="container-fluid">
+  <div class="row">
     <div class="col sidebar mb-3">
       <h1><i class="fa fa-calendar" aria-hidden="true"></i> Laravel Log Viewer</h1>
       <p class="text-muted"><i>by Rap2h</i></p>
@@ -207,4 +179,39 @@
     </div>
   </div>
 </div>
-@endsection
+<!-- jQuery for Bootstrap -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<!-- FontAwesome -->
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<!-- Datatables -->
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $('.table-container tr').on('click', function () {
+      $('#' + $(this).data('display')).toggle();
+    });
+    $('#table-log').DataTable({
+      "order": [$('#table-log').data('orderingIndex'), 'desc'],
+      "stateSave": true,
+      "stateSaveCallback": function (settings, data) {
+        window.localStorage.setItem("datatable", JSON.stringify(data));
+      },
+      "stateLoadCallback": function (settings) {
+        var data = JSON.parse(window.localStorage.getItem("datatable"));
+        if (data) data.start = 0;
+        return data;
+      }
+    });
+    $('#delete-log, #clean-log, #delete-all-log').click(function () {
+      return confirm('Are you sure?');
+    });
+  });
+</script>
+</body>
+</html>

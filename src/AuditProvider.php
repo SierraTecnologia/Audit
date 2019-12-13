@@ -48,8 +48,11 @@ class AuditProvider extends ServiceProvider
     /**
      * Alias the services in the boot.
      */
-    public function boot()
+    public function boot(Router $router)
     {
+        // Push middleware to web group
+        $router->pushMiddlewareToGroup('web', Audits::class);
+
         // Register configs, migrations, etc
         $this->registerDirectories();
         
