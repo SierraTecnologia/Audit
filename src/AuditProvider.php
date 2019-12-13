@@ -157,7 +157,7 @@ class AuditProvider extends ServiceProvider
             $this->getPublishesPath('config/logging.php') => config_path('logging.php'),
             $this->getPublishesPath('config/logviewer.php') => config_path('logviewer.php'),
             $this->getPublishesPath('config/telescope.php') => config_path('telescope.php')
-        ], 'sitec-config');
+        ], ['config', 'sitec-config']);
 
         // // Publish audit css and js to public directory
         // $this->publishes([
@@ -170,7 +170,7 @@ class AuditProvider extends ServiceProvider
         $this->publishes([
             $this->getPublishesPath('public/horizon') => public_path('vendor/horizon'),
             $this->getPublishesPath('public/larametrics') => public_path('vendor/larametrics')
-        ], 'sitec-public');
+        ], ['public', 'sitec-public']);
 
 
         $this->loadViews();
@@ -185,7 +185,7 @@ class AuditProvider extends ServiceProvider
         $this->loadViewsFrom($viewsPath, 'audit');
         $this->publishes([
             $viewsPath => base_path('resources/views/vendor/audit'),
-            $this->getPublishesPath('laravel-log-viewer') => base_path('resources/views/vendor/laravel-log-viewer'),
+            $this->getPublishesPath('views/laravel-log-viewer') => base_path('resources/views/vendor/laravel-log-viewer'),
         ], ['views', 'sitec-views']);
 
 
