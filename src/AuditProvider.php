@@ -57,6 +57,15 @@ class AuditProvider extends ServiceProvider
         $this->registerDirectories();
         
 
+        /**
+         * Audit Routes
+         */
+        Route::group([
+            'namespace' => '\Audit\Http\Controllers',
+        ], function (/**$router**/) {
+            require __DIR__.'/Routes/web.php';
+        });
+
         // // Wire up model event callbacks even if request is not for admin.  Do this
         // // after the usingAdmin call so that the callbacks run after models are
         // // mutated by Decoy logic.  This is important, in particular, so the
@@ -177,6 +186,7 @@ class AuditProvider extends ServiceProvider
         $this->app['router']->middlewareGroup('audit.endpoint', [
             'api'
         ]);
+
     }
     /**
      * Register configs, migrations, etc
@@ -222,7 +232,7 @@ class AuditProvider extends ServiceProvider
         $this->publishes([
             $viewsPath => base_path('resources/views/vendor/audit'),
             $this->getPublishesPath('views/laravel-log-viewer') => base_path('resources/views/vendor/laravel-log-viewer'),
-        ], ['views',  'sitec', 'sitec-views']);
+        ], ['views',  'sitec', 'sitec-views', 'audit-views']);
 
 
         // // Publish lanaguage files

@@ -4,7 +4,7 @@ namespace Audit\Services;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Schema;
-use Audit\Models\System\Audits;
+use Audit\Models\Audits;
 
 class AuditsService
 {
@@ -30,6 +30,10 @@ class AuditsService
         $business = 0;
         $user = 0;
 
+        /**
+         * @todo data faltando
+         */
+        $requestData = md5($requestData);
         if (Schema::hasTable(config('cms.db-prefix', '').'audits')) {
             $this->model->create([
                 'route' => $route,

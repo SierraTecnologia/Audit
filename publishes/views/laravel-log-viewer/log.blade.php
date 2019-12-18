@@ -1,30 +1,14 @@
 @extends('layouts.app')
 
-@section('css')<style>
-    body {
-      padding: 25px;
-    }
-
-    h1 {
-      font-size: 1.5em;
-      margin-top: 0;
-    }
+@section('css')
+  <style>
 
     #table-log {
-        font-size: 0.85rem;
-    }
-
-    .sidebar {
-        font-size: 0.85rem;
-        line-height: 1;
-    }
-
-    .btn {
-        font-size: 0.7rem;
+      font-size: 20px !important;
     }
 
     .stack {
-      font-size: 0.85em;
+      font-size: 20px !important;
     }
 
     .date {
@@ -33,6 +17,7 @@
 
     .text {
       word-break: break-all;
+      font-size: 20px !important;
     }
 
     a.llv-active {
@@ -50,7 +35,7 @@
     }
 
     .div-scroll {
-      height: 80vh;
+      height: 80px;
       overflow: hidden auto;
     }
     .nowrap {
@@ -61,16 +46,11 @@
 @stop
 
 @section('js')
-    <!-- jQuery for Bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
-    <!-- FontAwesome -->
-    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-    <!-- Datatables -->
+    @parent
+
+    @stack('javascript')
+    @yield('javascript')
+    
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
     <script>

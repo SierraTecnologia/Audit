@@ -23,6 +23,15 @@ class CreateLogsTables extends Migration
             $table->integer('status');
             $table->timestamps();
         });
+
+        Schema::create('audits', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('route')->nullable();
+            $table->string('business')->nullable();
+            $table->string('user')->nullable();
+            $table->text('data')->nullable();
+            $table->timestamps();
+        });
     }
     /**
      * Reverse the migrations.
