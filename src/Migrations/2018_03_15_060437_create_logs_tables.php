@@ -29,7 +29,7 @@ class CreateLogsTables extends Migration
             $table->string('route')->nullable();
             $table->string('business')->nullable();
             $table->string('user')->nullable();
-            $table->text('data')->nullable();
+            $table->longText('data')->nullable();
             $table->timestamps();
         });
     }
