@@ -25,6 +25,8 @@ class Changes
         \Illuminate\Database\Eloquent\Relations\Pivot::class,
     ];
 
+    protected $action = false;
+
     /**
      * Handle all Eloquent model events
      *
@@ -52,8 +54,7 @@ class Changes
                 return;
             }
             if (is_callable($check)) {
-                \Log::error('Callable log_changes have been deprecated');
-                if (!call_user_func($check, $model, $action, $admin)) {
+                if (!call_user_func($check, $model, $this->action, $admin)) {
                     return;
                 }
             }
@@ -63,7 +64,7 @@ class Changes
 
         // Check with the model itself to see if it should be logged
         if (method_exists($model, 'shouldLogChange')) {
-            if (!$model->shouldLogChange($action)) {
+            if (!$model->shouldLogChange($this->action)) {
                 return;
             }
             // Default to not logging changes if there is no shouldLogChange()
@@ -72,7 +73,7 @@ class Changes
         }
 
         // Log the event
-        Change::log($model, $action, $admin);
+        Change::log($model, $this->action, $admin);
     }
 
     protected function isToIgnore($model, $event)
@@ -91,8 +92,8 @@ class Changes
 
         // Get the action of the event
         preg_match('#eloquent\.(\w+)#', $event, $matches);
-        $action = $matches[1];
-        if (!in_array($action, $this->supported)) {
+        $this->action = $matches[1];
+        if (!in_array($this->action, $this->supported)) {
             return true;
         }
 
