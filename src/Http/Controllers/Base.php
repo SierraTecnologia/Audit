@@ -1049,7 +1049,7 @@ class Base extends Controller
     /**
      * Creates a success message for CRUD commands
      *
-     * @param  Facilitador\Model\Base|string $title The model instance that is
+     * @param  Audit\Model\Base|string $title The model instance that is
      *                                              being worked on  or a string
      *                                              containing the title
      * @param  string                        $verb  Default: 'saved'. Past tense CRUD verb (created, saved, etc)
@@ -1059,7 +1059,7 @@ class Base extends Controller
     {
         // Figure out the title and wrap it in quotes
         $title = $input;
-        if (is_a($input, '\Facilitador\Models\Base')) {
+        if (is_a($input, '\Audit\Models\Base')) {
             $title = $input->getAdminTitleAttribute();
         }
 

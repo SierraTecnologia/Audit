@@ -3,7 +3,7 @@
 namespace Audit\Http\Controllers\Admin;
 
 use Response;
-use Facilitador\Models\Change;
+use Audit\Models\Change;
 
 /**
  * A log of model changes, used for auditing Admin activity. Can also be used
@@ -47,7 +47,7 @@ class Changes extends Base
             'action' => [
                 'label' => __('facilitador::changes.controller.search.action'),
                 'type' => 'select',
-                'options' => 'Facilitador\Models\Change::getActions()',
+                'options' => 'Audit\Models\Change::getActions()',
             ],
             'title' => [
                 'label' => __('facilitador::changes.controller.search.title'),
@@ -56,7 +56,7 @@ class Changes extends Base
             'admin_id' => [
                 'label' => __('facilitador::changes.controller.search.admin'),
                 'type' => 'select',
-                'options' => 'Facilitador\Models\Change::getAdmins()',
+                'options' => 'Audit\Models\Change::getAdmins()',
             ],
             'created_at' => [
                 'label' => __('facilitador::changes.controller.search.date'),

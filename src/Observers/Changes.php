@@ -3,8 +3,8 @@
 namespace Audit\Observers;
 
 // Deps
-use Facilitador\Models;
-use Facilitador\Models\Change;
+
+use Audit\Models\Change;
 use Event;
 use Route;
 
@@ -20,30 +20,27 @@ class Changes
      */
     protected $supported = ['created', 'updated', 'deleted'];
 
+    protected $dontLog = [
+        \Aschmelyun\Larametrics\Models\LarametricsLog::class,
+        \Illuminate\Database\Eloquent\Relations\Pivot::class,
+    ];
+
     /**
      * Handle all Eloquent model events
      *
      * @param  string $event
      * @param  array $payload Contains:
-     *    - Facilitador\Models\Base $model
+     *    - Audit\Models\Base $model
      */
     public function handle($event, $payload)
     {
         list($model) = $payload;
-
-        // Don't log changes to pivot models.  Even though a user may have initiated
-        // this, it's kind of meaningless to them.  These events can happen when a
-        // user messes with drag and drop positioning.
-        if (is_a($model, \Illuminate\Database\Eloquent\Relations\Pivot::class)) {
+        if ($this->isToIgnore($model, $event)) {
             return;
         }
 
-        // Get the action of the event
-        preg_match('#eloquent\.(\w+)#', $event, $matches);
-        $action = $matches[1];
-        if (!in_array($action, $this->supported)) {
-            return;
-        }
+        \Log::error($event);
+        \Log::error($payload);
 
         // Get the admin acting on the record
         $admin = app('facilitador.user');
@@ -69,13 +66,36 @@ class Changes
             if (!$model->shouldLogChange($action)) {
                 return;
             }
-
-        // Default to not logging changes if there is no shouldLogChange()
+            // Default to not logging changes if there is no shouldLogChange()
         } else {
             return;
         }
 
         // Log the event
         Change::log($model, $action, $admin);
+    }
+
+    protected function isToIgnore($model, $event)
+    {
+
+        // Don't log changes to pivot models.  Even though a user may have initiated
+        // this, it's kind of meaningless to them.  These events can happen when a
+        // user messes with drag and drop positioning.
+        if (!empty($this->dontLog)) {
+            foreach ($this->dontLog as $logClass) {
+                if (is_a($model, $logClass)) {
+                    return true;
+                }
+            }
+        }
+
+        // Get the action of the event
+        preg_match('#eloquent\.(\w+)#', $event, $matches);
+        $action = $matches[1];
+        if (!in_array($action, $this->supported)) {
+            return true;
+        }
+
+        return false;
     }
 }

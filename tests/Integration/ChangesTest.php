@@ -3,7 +3,7 @@ namespace Tests\Integration;
 
 use App\Article;
 use App\Tag;
-use Facilitador\Models\Change;
+use Audit\Models\Change;
 use Cache;
 use Carbon\Carbon;
 use Facilitador;
