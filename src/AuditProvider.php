@@ -66,19 +66,11 @@ class AuditProvider extends ServiceProvider
             require __DIR__.'/Routes/web.php';
         });
 
-        // // Wire up model event callbacks even if request is not for admin.  Do this
-        // // after the usingAdmin call so that the callbacks run after models are
-        // // mutated by Decoy logic.  This is important, in particular, so the
-        // // Validation observer can alter validation rules before the onValidation
-        // // callback runs.
-        // $this->app['events']->listen('eloquent.*',
-        //     'Audit\Observers\ModelCallbacks');
-        // $this->app['events']->listen('audit::model.*',
-        //     'Audit\Observers\ModelCallbacks');
-        // // Log model change events after others in case they modified the record
-        // // before being saved.
-        // $this->app['events']->listen('eloquent.*',
-        //     'Audit\Observers\Changes');
+
+        // Log model change events after others in case they modified the record
+        // before being saved.
+        $this->app['events']->listen('eloquent.*',
+            'Audit\Observers\Changes');
     }
 
     /**
