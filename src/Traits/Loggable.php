@@ -1,15 +1,17 @@
 <?php
 
-namespace Audit\Models\Traits;
+namespace Audit\Traits;
 
 // Deps
 use App;
 use Facilitador\Models\Admin;
-use Facilitador\Models\Change;
+use Audit\Models\Change;
 use Facilitador\Models\Image;
 use Facilitador;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Facilitador\Models\Traits\SerializeWithImages;
+use Facilitador\Models\Traits\CanSerializeTransform;
 
 /**
  * Enable logging changes to models
