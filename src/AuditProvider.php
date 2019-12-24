@@ -79,6 +79,8 @@ class AuditProvider extends ServiceProvider
     public function register()
     {
         // Merge own configs into user configs 
+        $this->mergeConfigFrom($this->getPublishesPath('config/sitec/audit.php'), 'sitec.audit');
+
         $this->mergeConfigFrom($this->getPublishesPath('config/activitylog.php'), 'activitylog');
         $this->mergeConfigFrom($this->getPublishesPath('config/logging.php'), 'logging');
         $this->mergeConfigFrom($this->getPublishesPath('config/logviewer.php'), 'logviewer');
@@ -115,25 +117,6 @@ class AuditProvider extends ServiceProvider
             // $router->middleware('isAjax', isAjax::class);
             require __DIR__.'/../Routes/web.php';
         });
-    }
-
-    /**
-     * Delegate events to Decoy observers
-     *
-     * @return void
-     */
-    protected function delegateAdminObservers()
-    {
-        $this->app['events']->listen('eloquent.saving:*',
-            '\Audit\Observers\Localize');
-        $this->app['events']->listen('eloquent.saving:*',
-            '\Audit\Observers\Encoding@onSaving');
-        $this->app['events']->listen('eloquent.saved:*',
-            '\Audit\Observers\ManyToManyChecklist');
-        $this->app['events']->listen('eloquent.deleted:*',
-            '\Audit\Observers\Encoding@onDeleted');
-        $this->app['events']->listen('audit::model.validating:*',
-            '\Audit\Observers\ValidateExistingFiles@onValidating');
     }
 
     /**
@@ -190,7 +173,7 @@ class AuditProvider extends ServiceProvider
         // Publish config files
         $this->publishes([
             // Paths
-            $this->getPublishesPath('config/audit') => config_path('audit'),
+            $this->getPublishesPath('config/sitec') => config_path('sitec'),
             // Files
             $this->getPublishesPath('config/activitylog.php') => config_path('activitylog.php'),
             $this->getPublishesPath('config/logging.php') => config_path('logging.php'),

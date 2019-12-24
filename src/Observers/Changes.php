@@ -20,11 +20,6 @@ class Changes
      */
     protected $supported = ['created', 'updated', 'deleted'];
 
-    protected $dontLog = [
-        \Aschmelyun\Larametrics\Models\LarametricsLog::class,
-        \Illuminate\Database\Eloquent\Relations\Pivot::class,
-    ];
-
     protected $action = false;
 
     /**
@@ -78,13 +73,19 @@ class Changes
 
     protected function isToIgnore($model, $event)
     {
-
         // Don't log changes to pivot models.  Even though a user may have initiated
         // this, it's kind of meaningless to them.  These events can happen when a
         // user messes with drag and drop positioning.
-        if (!empty($this->dontLog)) {
-            foreach ($this->dontLog as $logClass) {
+        if (!empty($this->getDontLog())) {
+            foreach ($this->getDontLog() as $logClass) {
                 if (is_a($model, $logClass)) {
+                    return true;
+                }
+            }
+        }
+        if (!empty($this->getDontLogAlias())) {
+            foreach ($this->getDontLogAlias() as $logClassAlias) {
+                if (strpos($event, $logClassAlias) !== false) {
                     return true;
                 }
             }
@@ -98,5 +99,15 @@ class Changes
         }
 
         return false;
+    }
+
+    protected function getDontLog()
+    {
+        return config('sitec.audit.dontLog');
+    }
+
+    protected function getDontLogAlias()
+    {
+        return config('sitec.audit.dontLogAlias');
     }
 }
