@@ -36,15 +36,13 @@ class Changes
             return;
         }
 
-        \Log::error($event);
-        \Log::error($payload);
-
+        \Log::info('[Audit] Log Changes: '.print_r($event, true).print_r($payload, true));
         // Get the admin acting on the record
-        $admin = app('facilitador.user');
+        $admin =  $this->getUser();
 
         // If `log_changes` was configed as a callable, see if this model event
         // should not be logged
-        if ($check = config('facilitador.site.log_changes')) {
+        if ($check = config('sitec.site.log_changes')) {
             if (is_bool($check) && !$check) {
                 return;
             }
@@ -69,6 +67,11 @@ class Changes
 
         // Log the event
         Change::log($model, $this->action, $admin);
+    }
+
+    protected function getUser()
+    {
+        return app('facilitador.user');
     }
 
     protected function isToIgnore($model, $event)

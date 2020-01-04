@@ -102,67 +102,7 @@ class AuditProvider extends ServiceProvider
         $this->commands([]);
     }
 
-    /**
-     * Define the routes for the application.
-     *
-     * @param \Illuminate\Routing\Router $router
-     */
-    public function map(Router $router)
-    {
-        $router->middleware('audits', Audits::class);
-
-        $router->group([
-            'namespace' => $this->namespace,
-        ], function ($router) {
-            // $router->middleware('isAjax', isAjax::class);
-            require __DIR__.'/../Routes/web.php';
-        });
-    }
-
-    /**
-     * Register middlewares
-     *
-     * @return void
-     */
-    protected function registerMiddlewares()
-    {
-
-        // Register middleware individually
-        foreach ([
-            'audit.auth'          => \Audit\Http\Middleware\Auth::class,
-            'audit.edit-redirect' => \Audit\Http\Middleware\EditRedirect::class,
-            'audit.guest'         => \Audit\Http\Middleware\Guest::class,
-            'audit.save-redirect' => \Audit\Http\Middleware\SaveRedirect::class,
-        ] as $key => $class) {
-            $this->app['router']->aliasMiddleware($key, $class);
-        }
-
-        // This group is used by public audit routes
-        $this->app['router']->middlewareGroup('audit.public', [
-            'web',
-        ]);
-
-        // The is the starndard auth protected group
-        $this->app['router']->middlewareGroup('audit.protected', [
-            'web',
-            'audit.auth',
-            'audit.save-redirect',
-            'audit.edit-redirect',
-        ]);
-
-        // Require a logged in admin session but no CSRF token
-        $this->app['router']->middlewareGroup('audit.protected_endpoint', [
-            \App\Http\Middleware\EncryptCookies::class,
-            \Illuminate\Session\Middleware\StartSession::class,
-            'audit.auth',
-        ]);
-
-        // An open endpoint, like used by Zendcoder
-        $this->app['router']->middlewareGroup('audit.endpoint', [
-            'api'
-        ]);
-
-    }
+    
     /**
      * Register configs, migrations, etc
      *

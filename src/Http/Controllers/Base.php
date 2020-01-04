@@ -180,7 +180,7 @@ class Base extends Controller
     private function init()
     {
         // Set the layout from the Config file
-        $this->layout = View::make(config('facilitador.core.layout'));
+        $this->layout = View::make(config('sitec.core.layout'));
 
         // Store the controller class for routing
         $this->controller = get_class($this);
@@ -1078,7 +1078,7 @@ class Base extends Controller
 
         // Add extra messaging if the creation was begun from the localize UI
         if ($verb == 'duplicated' && is_a($input, '\Facilitador\Models\Base') && !empty($input->locale)) {
-            $message .= __('facilitador::base.success_localized', ['locale' => config('facilitador.site.locales')[$input->locale]]);
+            $message .= __('facilitador::base.success_localized', ['locale' => config('sitec.site.locales')[$input->locale]]);
         }
 
         // Return message
