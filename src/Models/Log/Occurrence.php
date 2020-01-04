@@ -16,18 +16,15 @@ class Occurrence extends Model
                                                                                                                                                                                                  
     public $errorMessage = null;                                                                                                                                                                 
                                                                                                                                                                                                  
-    public static function rules()                                                                                                                                                               
-    {                                                                                                                                                                                            
-        return [                                                                                                                                                                                 
-            'name' => 'required|name|max:255',                                                                                                                                    
-            'slug' => 'required|slug|max:255',
-            // Simbolo de 3 letras: Real (BRL), Bitcoin (BTC)                                                                                                                                
-            'symbol' => 'required|slug|max:255',
-            // Volume Transacionado usando a própria moeda
-            'circulating_supply' => 'required',                                                                                                                                     
-            'status' => 'required|min:0|max:1',
-        ];
-    }
+    public $rules =  [                                                                                                                                                                                 
+        'name' => 'required|name|max:255',                                                                                                                                    
+        'slug' => 'required|slug|max:255',
+        // Simbolo de 3 letras: Real (BRL), Bitcoin (BTC)                                                                                                                                
+        'symbol' => 'required|slug|max:255',
+        // Volume Transacionado usando a própria moeda
+        'circulating_supply' => 'required',                                                                                                                                     
+        'status' => 'required|min:0|max:1',
+    ];
 
     /**
      * The attributes that are mass assignable.
