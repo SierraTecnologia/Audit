@@ -2,7 +2,9 @@
 
 namespace Audit\Models;
 
-class Audits extends Model
+use Support\Models\Base;
+
+class Audits extends Base
 {
     
     public $table = 'audits';

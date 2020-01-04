@@ -2,9 +2,9 @@
 
 namespace Audit\Models\Actions\Log;
 
-use Audit\Models\Model;
+use Support\Models\Base;
 
-class Finger extends Model
+class Finger extends Base
 {
 
     protected $organizationPerspective = false;
@@ -43,11 +43,6 @@ class Finger extends Model
         ],
     );
 
-
-    public function gateway()
-    {
-        return $this->belongsTo('App\Models\Gateway', 'gateway_id', 'id');
-    }
 
     public function user()
     {

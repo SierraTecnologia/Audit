@@ -5,9 +5,9 @@
 
 namespace Audit\Models\Actions\Log;
 
-use Audit\Models\Model;
+use Support\Models\Base;
 
-class Message extends Model
+class Message extends Base
 {
 
     protected $organizationPerspective = false;

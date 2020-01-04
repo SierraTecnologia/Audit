@@ -8,9 +8,9 @@
 
 namespace Audit\Models\Actions\Log;
 
-use Audit\Models\Model;
+use Support\Models\Base;
 
-class Type extends Model
+class Type extends Base
 {
 
     protected $organizationPerspective = false;
@@ -49,11 +49,6 @@ class Type extends Model
         ],
     );
 
-
-    public function gateway()
-    {
-        return $this->belongsTo('App\Models\Gateway', 'gateway_id', 'id');
-    }
 
     public function user()
     {

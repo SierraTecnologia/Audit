@@ -9,7 +9,9 @@ use FacilitadorURL;
 use Illuminate\Support\Str;
 use Facilitador\Input\Search;
 use Bkwld\Library\Utils\Text;
-use Illuminate\Database\Eloquent\Model;
+
+use Support\Models\Base;
+use App\Models\User;
 
 /**
  * Reperesents a single model change event.  Typically a single CRUD action on
@@ -90,10 +92,10 @@ class Change extends Base
      *
      * @param  Model  $model  The model being touched
      * @param  string $action Generally a CRUD verb: "created", "updated", "deleted"
-     * @param  Admin  $admin  The admin acting on the record
+     * @param  User  $admin  The admin acting on the record
      * @return static|void
      */
-    public static function log(Model $model, $action, Admin $admin = null)
+    public static function log(Model $model, $action, User $admin = null)
     {
         // Create a new change instance
         if (static::shouldWriteChange($model, $action)) {
@@ -158,12 +160,12 @@ class Change extends Base
      *
      * @param  Model  $model  Th
      * @param  string $action
-     * @param  Admin  $admin
+     * @param  User  $admin
      */
     static protected function createLog(
         Model $model,
         $action,
-        Admin $admin = null,
+        User $admin = null,
         $changed = null)
     {
         return static::create([
@@ -191,10 +193,10 @@ class Change extends Base
     /**
      * Get the admin id
      *
-     * @param  Admin $admin
+     * @param  User $admin
      * @return integer
      */
-    static protected function getAdminId(Admin $admin = null)
+    static protected function getAdminId(User $admin = null)
     {
         if (!$admin) {
             $admin = app('facilitador.user');
@@ -208,13 +210,13 @@ class Change extends Base
      *
      * @param  Model  $model
      * @param  string $action
-     * @param  Admin $admin
+     * @param  User $admin
      * @return void
      */
     static public function logPublishingChange(
         Model $model,
         $action,
-        Admin $admin = null)
+        User $admin = null)
     {
         if ($model->isDirty('public')) {
             if ($model->public) {
@@ -246,7 +248,7 @@ class Change extends Base
      */
     public static function getAdmins()
     {
-        return Admin::all(['id', 'email'])->pluck('email', 'id');
+        return User::all(['id', 'email'])->pluck('email', 'id');
     }
 
     /**

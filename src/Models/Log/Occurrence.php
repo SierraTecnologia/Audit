@@ -5,9 +5,9 @@
 
 namespace Audit\Models\Actions\Log;
 
-use Audit\Models\Model;
+use Support\Models\Base;
 
-class Occurrence extends Model
+class Occurrence extends Base
 {
 
     protected $organizationPerspective = true;
