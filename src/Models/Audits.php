@@ -14,5 +14,5 @@ class Audits extends Model
         'data',
     ];
 
-    public static $rules = [];
+    public $rules = [];
 }
