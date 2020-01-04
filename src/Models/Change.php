@@ -372,6 +372,11 @@ class Change extends Base
         if (is_null($format)) {
             $format = 'd \d\e F \d\e Y \à\s h\hi';
         }
+        
+        if (is_null($this->created_at)) {
+            return '-';
+        }
+
         return $this->created_at->format($format);
     }
 
