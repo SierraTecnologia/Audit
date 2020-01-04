@@ -15,7 +15,7 @@ use Response;
 use stdClass;
 use Validator;
 use Illuminate\Support\Str;
-use Facilitador\Input\Search;
+use Support\Interactions\Input\Search;
 use Bkwld\Library\Utils\File;
 use Facilitador\Input\Sidebar;
 use Facilitador\Fields\Listing;

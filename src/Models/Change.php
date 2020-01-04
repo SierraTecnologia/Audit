@@ -7,7 +7,7 @@ use Facilitador;
 use Config;
 use FacilitadorURL;
 use Illuminate\Support\Str;
-use Facilitador\Input\Search;
+use Support\Interactions\Input\Search;
 use Bkwld\Library\Utils\Text;
 
 use Support\Models\Base;
@@ -351,6 +351,10 @@ class Change extends Base
     public function getDateAttribute()
     {
         \Carbon\Carbon::setLocale(Facilitador::locale());
+        if (is_null($this->created_at)) {
+            return '-';
+        }
+
         return sprintf('<a href="%s" class="js-tooltip" title="%s">%s</a>',
             $this->filterUrl(['created_at' => $this->created_at->format('m/d/Y')]),
             $this->getHumanDateAttribute(),
@@ -364,7 +368,11 @@ class Change extends Base
      */
     public function getHumanDateAttribute()
     {
-        return $this->created_at->format(__('facilitador::changes.human_date'));
+        $format = __('facilitador::changes.human_date');
+        if (is_null($format)) {
+            $format = 'd \d\e F \d\e Y \à\s h\hi';
+        }
+        return $this->created_at->format($format);
     }
 
     /**
