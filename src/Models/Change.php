@@ -40,7 +40,7 @@ class Change extends Base
      */
     public function admin()
     {
-        return $this->belongsTo('Facilitador\Models\Admin');
+        return $this->belongsTo('App\Models\User');
     }
 
     /**
@@ -172,7 +172,7 @@ class Change extends Base
             'action' => $action,
             'title' => static::getModelTitle($model),
             'changed' => $changed,
-            'admin_id' => static::getAdminId($admin),
+            'changeable_id' => static::getAdminId($admin),
         ]);
     }
 
@@ -272,9 +272,9 @@ class Change extends Base
      */
     public function getAdminLinkAttribute()
     {
-        if ($this->admin_id) {
+        if ($this->changeable_id) {
             return sprintf('<a href="%s">%s</a>',
-                $this->filterUrl(['admin_id' => $this->admin_id]),
+                $this->filterUrl(['changeable_id' => $this->changeable_id]),
                 $this->admin->getAdminTitleHtmlAttribute());
         } else {
             return 'Someone';

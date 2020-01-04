@@ -53,7 +53,7 @@ class Changes extends Base
                 'label' => __('facilitador::changes.controller.search.title'),
                 'type' => 'text',
             ],
-            'admin_id' => [
+            'changeable_id' => [
                 'label' => __('facilitador::changes.controller.search.admin'),
                 'type' => 'select',
                 'options' => 'Audit\Models\Change::getAdmins()',

@@ -22,7 +22,6 @@ class CreateChanges extends Migration
             $table->string('title')->nullable();
             $table->longText('changed')->nullable();
 
-            $table->integer('admin_id')->unsigned();
             $table->longText('meta')->nullable();
             $table->boolean('deleted')->nullable();
             $table->timestamps();
@@ -32,7 +31,11 @@ class CreateChanges extends Migration
             $table->index(['action', 'created_at']);
             $table->index(['created_at', 'action']);
             $table->index(['deleted', 'created_at']);
-            $table->foreign('admin_id')->references('id')->on('admins')->onUpdate('cascade')->onDelete('cascade');
+
+			$table->integer('changeable_id')->nullable();
+			$table->string('changeable_type', 255)->nullable();
+            // $table->foreign('admin_id')->references('id')->on('admins')->onUpdate('cascade')->onDelete('cascade');
+            // $table->integer('admin_id')->unsigned();
         });
     }
 

@@ -124,7 +124,7 @@ class ChangesTest extends TestCase
             ->get();
         $this->assertEquals(1, $changes->count());
         $change = $changes->first();
-        $this->assertNull($change->admin_id);
+        $this->assertNull($change->changeable_id);
 
         // Are views fine?
         $this->auth();
