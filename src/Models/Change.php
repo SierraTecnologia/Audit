@@ -42,7 +42,7 @@ class Change extends Base
      */
     public function admin()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(config('sitec.core.models.user', \App\Models\User::class));
     }
 
     /**
