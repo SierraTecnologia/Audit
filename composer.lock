@@ -4253,7 +4253,7 @@
             "dist": {
                 "type": "path",
                 "url": "../LaravelSupport",
-                "reference": "308ec1db057bed7c04c8b65556da44d5555cadcd"
+                "reference": "a0e2bd7b004df6eeaecee00d982cd8eca66f2337"
             },
             "require": {
                 "barryvdh/laravel-debugbar": "*",
@@ -4360,7 +4360,7 @@
             "dist": {
                 "type": "path",
                 "url": "../Population",
-                "reference": "7daf72929933195443376fa645370dbfc1a484ed"
+                "reference": "2a03650c3a322d79a03ff0a479a4b07a7b85110f"
             },
             "require": {
                 "sierratecnologia/informate": "dev-master",
