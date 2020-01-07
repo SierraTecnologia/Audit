@@ -2087,31 +2087,32 @@
         },
         {
             "name": "kassner/log-parser",
-            "version": "1.5.0",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kassner/log-parser.git",
-                "reference": "ea846b7edf24a421c5484902b2501c9c8e065796"
+                "reference": "3e9264faaba5985c01e44d01aca5c55370440f2b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kassner/log-parser/zipball/ea846b7edf24a421c5484902b2501c9c8e065796",
-                "reference": "ea846b7edf24a421c5484902b2501c9c8e065796",
+                "url": "https://api.github.com/repos/kassner/log-parser/zipball/3e9264faaba5985c01e44d01aca5c55370440f2b",
+                "reference": "3e9264faaba5985c01e44d01aca5c55370440f2b",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.4"
+                "php": ">=7.2.0"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.11",
-                "phpmd/phpmd": "~2.1",
-                "phpunit/phpunit": "~4.4",
-                "sebastian/phpcpd": "~2.0"
+                "friendsofphp/php-cs-fixer": "^2.16",
+                "phpmd/phpmd": "^2.8",
+                "phpunit/phpunit": "~8.0",
+                "sebastian/phpcpd": "^4.1",
+                "vimeo/psalm": "^3.7"
             },
             "type": "library",
             "autoload": {
-                "psr-0": {
-                    "Kassner": "src"
+                "psr-4": {
+                    "Kassner\\LogParser\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2136,7 +2137,7 @@
                 "nginx",
                 "parser"
             ],
-            "time": "2019-02-04T07:43:30+00:00"
+            "time": "2020-01-05T20:41:04+00:00"
         },
         {
             "name": "larapack/hooks",
@@ -4253,7 +4254,7 @@
             "dist": {
                 "type": "path",
                 "url": "../LaravelSupport",
-                "reference": "a0e2bd7b004df6eeaecee00d982cd8eca66f2337"
+                "reference": "308ec1db057bed7c04c8b65556da44d5555cadcd"
             },
             "require": {
                 "barryvdh/laravel-debugbar": "*",
@@ -4360,7 +4361,7 @@
             "dist": {
                 "type": "path",
                 "url": "../Population",
-                "reference": "2a03650c3a322d79a03ff0a479a4b07a7b85110f"
+                "reference": "a76241d2a90159b4ee775668874804d53a8cf7e1"
             },
             "require": {
                 "sierratecnologia/informate": "dev-master",
