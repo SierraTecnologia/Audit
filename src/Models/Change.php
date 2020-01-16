@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 use Support\Interactions\Input\Search;
 use Bkwld\Library\Utils\Text;
 use Illuminate\Database\Eloquent\Model;
-use Support\Models\Base;
+use Audit\Models\Base;
 use App\Models\User;
 
 /**

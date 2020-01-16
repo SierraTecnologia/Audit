@@ -8,7 +8,7 @@
 
 namespace Audit\Models\Actions\Log;
 
-use Support\Models\Base;
+use Audit\Models\Base;
 
 class Type extends Base
 {

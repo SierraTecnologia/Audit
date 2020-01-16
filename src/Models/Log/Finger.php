@@ -2,7 +2,7 @@
 
 namespace Audit\Models\Actions\Log;
 
-use Support\Models\Base;
+use Audit\Models\Base;
 
 class Finger extends Base
 {

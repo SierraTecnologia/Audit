@@ -2,7 +2,7 @@
 
 namespace Audit\Models;
 
-use Support\Models\Base;
+use Audit\Models\Base;
 
 class Audits extends Base
 {

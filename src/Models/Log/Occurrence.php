@@ -5,7 +5,7 @@
 
 namespace Audit\Models\Actions\Log;
 
-use Support\Models\Base;
+use Audit\Models\Base;
 
 class Occurrence extends Base
 {
