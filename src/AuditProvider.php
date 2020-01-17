@@ -15,6 +15,7 @@ use Audit\Http\Middleware\isAjax;
 
 class AuditProvider extends ServiceProvider
 {
+    // @todo Usar Tools aqui pro providers
     /**
      * This namespace is applied to the controller routes in your routes file.
      *
@@ -43,6 +44,40 @@ class AuditProvider extends ServiceProvider
          */
         \Laravel\Telescope\TelescopeServiceProvider::class,
         \Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
+    ];
+
+    /**
+     * Rotas do Menu
+     */
+    public static $menuItens = [
+        'System' => [
+            'Audits' => [
+                [
+                    'text'        => 'Logs',
+                    'route'       => 'larametrics::metrics.index',
+                    'icon'        => 'dashboard',
+                    'icon_color'  => 'blue',
+                    'label_color' => 'success',
+                    // 'access' => \App\Models\Role::$ADMIN
+                ],
+                [
+                    'text'        => 'Telescope',
+                    'route'       => 'telescope',
+                    'icon'        => 'dashboard',
+                    'icon_color'  => 'blue',
+                    'label_color' => 'success',
+                    // 'access' => \App\Models\Role::$ADMIN
+                ],
+                [
+                    'text'        => 'Horizon',
+                    'route'       => 'horizon.index',
+                    'icon'        => 'dashboard',
+                    'icon_color'  => 'blue',
+                    'label_color' => 'success',
+                    // 'access' => \App\Models\Role::$ADMIN
+                ],
+            ],
+        ],
     ];
 
     /**
