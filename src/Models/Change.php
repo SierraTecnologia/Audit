@@ -35,6 +35,21 @@ class Change extends Base
         'changed' => 'array',
     ];
 
+    protected $fillable = [
+        'admin',
+        'key',
+        'changeable_id',
+        'changed',
+        'deleted',
+        
+        'action',
+        'model',
+        'model_title',
+        'date',
+        'title',
+        'meta',
+    ];
+
     /**
      * Get the admin associated with the change
      *
