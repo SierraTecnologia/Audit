@@ -4264,7 +4264,7 @@
             "dist": {
                 "type": "path",
                 "url": "../Informate",
-                "reference": "7bc526890c4795715f4ece948cb5755a6fd286f7"
+                "reference": "4573c4d61add4ba02467b10fb29d8134d6ae5683"
             },
             "require": {
                 "php": ">=7.2.0",
@@ -4309,7 +4309,7 @@
             "dist": {
                 "type": "path",
                 "url": "../LaravelSupport",
-                "reference": "6629e6cbd9e47daea8a2e6ab674e035da65f5662"
+                "reference": "ebbf88f51e2e6b88e32721c44ff6539c815f446a"
             },
             "require": {
                 "barryvdh/laravel-debugbar": "*",
@@ -4416,7 +4416,7 @@
             "dist": {
                 "type": "path",
                 "url": "../Population",
-                "reference": "0cc87e57de940fc2d782f7960706faef05a6162f"
+                "reference": "44c804dfdd8d6444bfb0a026ed8ec1f6f1f178de"
             },
             "require": {
                 "sierratecnologia/informate": "dev-master",
