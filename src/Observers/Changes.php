@@ -36,7 +36,7 @@ class Changes
             return;
         }
 
-        \Log::info('[Audit] Log Changes: '.print_r($event, true).print_r($payload, true));
+        \Log::debug('[Audit] Log Changes: '.print_r($event, true).print_r($payload, true));
         // Get the admin acting on the record
         $admin =  $this->getUser();
 
