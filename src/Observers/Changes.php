@@ -42,7 +42,7 @@ class Changes
 
         // If `log_changes` was configed as a callable, see if this model event
         // should not be logged
-        if ($check = config('sitec.site.log_changes')) {
+        if ($check = \Illuminate\Support\Facades\Config::get('sitec.site.log_changes')) {
             if (is_bool($check) && !$check) {
                 return;
             }
@@ -106,11 +106,11 @@ class Changes
 
     protected function getDontLog()
     {
-        return config('sitec.audit.dontLog');
+        return \Illuminate\Support\Facades\Config::get('sitec.audit.dontLog');
     }
 
     protected function getDontLogAlias()
     {
-        return config('sitec.audit.dontLogAlias');
+        return \Illuminate\Support\Facades\Config::get('sitec.audit.dontLogAlias');
     }
 }

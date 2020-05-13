@@ -21,7 +21,7 @@ class CreateTelescopeEntriesTable extends Migration
     public function __construct()
     {
         $this->schema = Schema::connection(
-            config('telescope.storage.database.connection')
+            \Illuminate\Support\Facades\Config::get('telescope.storage.database.connection')
         );
     }
 
