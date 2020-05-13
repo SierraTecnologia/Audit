@@ -34,7 +34,7 @@ class AuditsService
          * @todo data faltando
          */
         $requestData = md5($requestData);
-        if (Schema::hasTable(config('cms.db-prefix', '').'audits')) {
+        if (Schema::hasTable('audits')) {
             $this->model->create([
                 'route' => $route,
                 'business' => $business,
