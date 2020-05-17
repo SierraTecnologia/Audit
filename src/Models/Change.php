@@ -107,7 +107,7 @@ class Change extends Base
      *
      * @param  Model  $model  The model being touched
      * @param  string $action Generally a CRUD verb: "created", "updated", "deleted"
-     * @param  User  $admin  The admin acting on the record
+     * @param  User   $admin  The admin acting on the record
      * @return static|void
      */
     public static function log(Model $model, $action, User $admin = null)
@@ -147,7 +147,8 @@ class Change extends Base
      */
     static private function shouldWriteChange(Model $model, $action)
     {
-        if (in_array($action, ['created', 'deleted'])) return true;
+        if (in_array($action, ['created', 'deleted'])) { return true;
+        }
         $changed_attributes = array_keys($model->getDirty());
         $ignored = ['updated_at', 'public'];
         $loggable = array_diff($changed_attributes, $ignored);
@@ -173,30 +174,32 @@ class Change extends Base
     /**
      * Create a change entry
      *
-     * @param  Model  $model  Th
-     * @param  string $action
-     * @param  User  $admin
+     * @param Model  $model  Th
+     * @param string $action
+     * @param User   $admin
      */
     static protected function createLog(
         Model $model,
         $action,
         User $admin = null,
-        $changed = null)
-    {
-        return static::create([
+        $changed = null
+    ) {
+        return static::create(
+            [
             'model' => get_class($model),
             'key' => $model->getKey(),
             'action' => $action,
             'title' => static::getModelTitle($model),
             'changed' => $changed,
             'changeable_id' => static::getAdminId($admin),
-        ]);
+            ]
+        );
     }
 
     /**
      * Get the title of the model
      *
-     * @param  Model  $model
+     * @param  Model $model
      * @return string
      */
     static protected function getModelTitle(Model $model)
@@ -225,14 +228,14 @@ class Change extends Base
      *
      * @param  Model  $model
      * @param  string $action
-     * @param  User $admin
+     * @param  User   $admin
      * @return void
      */
     static public function logPublishingChange(
         Model $model,
         $action,
-        User $admin = null)
-    {
+        User $admin = null
+    ) {
         if ($model->isDirty('public')) {
             if ($model->public) {
                 static::createLog($model, 'published', $admin);
@@ -251,9 +254,11 @@ class Change extends Base
     public static function getActions()
     {
         return static::groupBy('action')->pluck('action', 'action')
-            ->mapWithKeys(function ($item) {
-                return [$item => __("facilitador::changes.actions.$item")];
-            });
+            ->mapWithKeys(
+                function ($item) {
+                    return [$item => __("facilitador::changes.actions.$item")];
+                }
+            );
     }
 
     /**
@@ -273,13 +278,15 @@ class Change extends Base
      */
     public function getAdminTitleHtmlAttribute()
     {
-        return __('facilitador::changes.admin_title', [
+        return __(
+            'facilitador::changes.admin_title', [
             'admin' => $this->getAdminLinkAttribute(),
             'action' => $this->getActionLabelAttribute(),
             'model' => $this->getModelNameHtmlAttribute(),
             'model_title' => $this->getLinkedTitleAttribute(),
             'date' => $this->getDateAttribute()
-        ]);
+            ]
+        );
     }
 
     /**
@@ -290,9 +297,11 @@ class Change extends Base
     public function getAdminLinkAttribute()
     {
         if ($this->changeable_id) {
-            return sprintf('<a href="%s">%s</a>',
+            return sprintf(
+                '<a href="%s">%s</a>',
                 $this->filterUrl(['changeable_id' => $this->changeable_id]),
-                $this->admin->getAdminTitleHtmlAttribute());
+                $this->admin->getAdminTitleHtmlAttribute()
+            );
         } else {
             return 'Someone';
         }
@@ -313,10 +322,12 @@ class Change extends Base
             'unpublished' => 'default',
         ];
 
-        return sprintf('<a href="%s" class="label label-%s">%s</a>',
+        return sprintf(
+            '<a href="%s" class="label label-%s">%s</a>',
             $this->filterUrl(['action' => $this->action]),
             isset($map[$this->action]) ? $map[$this->action] : 'info',
-            __("facilitador::changes.actions.$this->action"));
+            __("facilitador::changes.actions.$this->action")
+        );
     }
 
     /**
@@ -331,17 +342,21 @@ class Change extends Base
 
         // There is not a controller for the model
         if (!$class || !class_exists($class)) {
-            return sprintf('<b><a href="%s">%s</a></b>',
-            $this->filterUrl(['model' => $this->model]),
-            preg_replace('#(?<!\ )[A-Z]#', ' $0', $this->model));
+            return sprintf(
+                '<b><a href="%s">%s</a></b>',
+                $this->filterUrl(['model' => $this->model]),
+                preg_replace('#(?<!\ )[A-Z]#', ' $0', $this->model)
+            );
         }
 
         // There is a corresponding controller class
         $controller = new $class;
-        return sprintf('<b class="js-tooltip" title="%s"><a href="%s">%s</a></b>',
+        return sprintf(
+            '<b class="js-tooltip" title="%s"><a href="%s">%s</a></b>',
             htmlentities($controller->description()),
             $this->filterUrl(['model' => $this->model]),
-            Str::singular($controller->title()));
+            Str::singular($controller->title())
+        );
     }
 
     /**
@@ -352,10 +367,13 @@ class Change extends Base
      */
     public function getLinkedTitleAttribute()
     {
-        if (!$this->title) return;
-        return sprintf('<a href="%s">"%s"</a>',
+        if (!$this->title) { return;
+        }
+        return sprintf(
+            '<a href="%s">"%s"</a>',
             $this->filterUrl(['model' => $this->model, 'key' => $this->key]),
-            $this->title);
+            $this->title
+        );
     }
 
     /**
@@ -370,10 +388,12 @@ class Change extends Base
             return '-';
         }
 
-        return sprintf('<a href="%s" class="js-tooltip" title="%s">%s</a>',
+        return sprintf(
+            '<a href="%s" class="js-tooltip" title="%s">%s</a>',
             $this->filterUrl(['created_at' => $this->created_at->format('m/d/Y')]),
             $this->getHumanDateAttribute(),
-            $this->created_at->diffForHumans());
+            $this->created_at->diffForHumans()
+        );
     }
 
     /**
@@ -403,11 +423,13 @@ class Change extends Base
      */
     public function makeAdminActions($data)
     {
-        return array_filter([
+        return array_filter(
+            [
             $this->filter_action,
             $this->changes_action,
             $this->preview_action,
-        ]);
+            ]
+        );
     }
 
     /**
@@ -417,12 +439,14 @@ class Change extends Base
      */
     public function getFilterActionAttribute()
     {
-        return sprintf('<a href="%s"
+        return sprintf(
+            '<a href="%s"
             class="glyphicon glyphicon-filter js-tooltip"
             title="' . __('facilitador::changes.standard_list.filter') . '"
             data-placement="left"></a>',
             $this->filterUrl(['model' => $this->model, 'key' => $this->key]),
-            strip_tags($this->getModelNameHtmlAttribute()));
+            strip_tags($this->getModelNameHtmlAttribute())
+        );
     }
 
     /**
@@ -444,18 +468,22 @@ class Change extends Base
     {
         // If there are changes, add the modal button
         if ($this->changed) {
-            return sprintf('<a href="%s"
+            return sprintf(
+                '<a href="%s"
                 class="glyphicon glyphicon-export js-tooltip changes-modal-link"
                 title="%s" data-placement="left"></a>',
                 FacilitadorURL::action('changes@edit', $this->id),
-                __('facilitador::changes.standard_list.view'));
+                __('facilitador::changes.standard_list.view')
+            );
         }
 
         // Else, show a disabled button
         else {
-            return sprintf('<span
+            return sprintf(
+                '<span
             class="glyphicon glyphicon-export js-tooltip"
-            title="%s" data-placement="left"></span>', __('facilitador::changes.standard_list.no_changed'));
+            title="%s" data-placement="left"></span>', __('facilitador::changes.standard_list.no_changed')
+            );
         }
     }
 
@@ -469,12 +497,15 @@ class Change extends Base
     {
         if ($this->changedModel
             && $this->changedModel->uri
-            && $this->action != 'deleted') {
-            return sprintf('<a href="%s" target="_blank"
+            && $this->action != 'deleted'
+        ) {
+            return sprintf(
+                '<a href="%s" target="_blank"
                 class="glyphicon glyphicon-bookmark js-tooltip"
                 title="%s" data-placement="left"></a>',
                 $this->preview_url,
-                __('facilitador::changes.standard_list.preview'));
+                __('facilitador::changes.standard_list.preview')
+            );
         } else {
             return '<span class="glyphicon glyphicon-bookmark disabled"></span>';
         }
@@ -487,11 +518,13 @@ class Change extends Base
      */
     public function getPreviewUrlAttribute()
     {
-        return vsprintf('%s?%s=%s', [
+        return vsprintf(
+            '%s?%s=%s', [
             $this->changedModel->uri,
             static::QUERY_KEY,
             $this->id,
-        ]);
+            ]
+        );
     }
 
     /**
@@ -503,9 +536,11 @@ class Change extends Base
     {
         // Remove some specific attributes.  Leaving empties in there so the updating
         // of values to NULL is displayed.
-        $attributes = array_except($this->changed, [
+        $attributes = array_except(
+            $this->changed, [
             'id', 'updated_at', 'created_at', 'password', 'remember_token',
-        ]);
+            ]
+        );
 
         // Make more readable titles
         $out = [];

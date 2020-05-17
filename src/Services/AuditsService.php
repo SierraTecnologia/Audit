@@ -15,7 +15,8 @@ class AuditsService
 
     public function log($request)
     {
-        $requestData = json_encode([
+        $requestData = json_encode(
+            [
             'referer' => $request->server('HTTP_REFERER', null),
             'user_agent' => $request->server('HTTP_USER_AGENT', null),
             'host' => $request->server('HTTP_HOST', null),
@@ -24,7 +25,8 @@ class AuditsService
             'method' => $request->server('REQUEST_METHOD', null),
             'query' => $request->server('QUERY_STRING', null),
             'time' => $request->server('REQUEST_TIME', null),
-        ]);
+            ]
+        );
 
         $route = 'todo/Route';
         $business = 0;
@@ -35,12 +37,14 @@ class AuditsService
          */
         $requestData = md5($requestData);
         if (Schema::hasTable('audits')) {
-            $this->model->create([
+            $this->model->create(
+                [
                 'route' => $route,
                 'business' => $business,
                 'user' => $user,
                 'data' => $requestData,
-            ]);
+                ]
+            );
         }
     }
 }

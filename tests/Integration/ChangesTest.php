@@ -24,7 +24,8 @@ class ChangesTest extends TestCase
      *
      * @return void
      */
-    protected function setUp() {
+    protected function setUp()
+    {
         parent::setUp();
         $this->auth();
 
@@ -61,10 +62,12 @@ class ChangesTest extends TestCase
         $response = $this->get('admin/changes/2/edit');
         $response
             ->assertStatus(200)
-            ->assertJson([
+            ->assertJson(
+                [
                 'title' => 'Name',
                 'action' => 'created',
-            ]);
+                ]
+            );
     }
 
     /**
@@ -77,10 +80,12 @@ class ChangesTest extends TestCase
         $response = $this->get('admin/changes/3/edit');
         $response
             ->assertStatus(200)
-            ->assertJson([
+            ->assertJson(
+                [
                 'title' => 'New name',
                 'action' => 'updated',
-            ]);
+                ]
+            );
     }
 
     /**
@@ -94,10 +99,12 @@ class ChangesTest extends TestCase
         $response = $this->get(Change::find(2)->preview_url);
         $response
             ->assertStatus(200)
-            ->assertJson([
+            ->assertJson(
+                [
                 'id' => $this->tag->id,
                 'name' => 'Name',
-            ]);
+                ]
+            );
     }
 
     /**
@@ -110,13 +117,17 @@ class ChangesTest extends TestCase
     {
         // Verify no logout change was written for admin
         $this->logout();
-        $this->assertEquals(1,
-            Change::where('model', 'Facilitador\Models\Admin')->count());
+        $this->assertEquals(
+            1,
+            Change::where('model', 'Facilitador\Models\Admin')->count()
+        );
 
         // Create the article unpublic so no published change gets written
-        $article = factory(Article::class)->create([
+        $article = factory(Article::class)->create(
+            [
             'public' => 0,
-        ]);
+            ]
+        );
 
         // Did Change get written?
         $changes = Change::where('model', 'App\Article')
@@ -139,63 +150,85 @@ class ChangesTest extends TestCase
      */
     public function testPublishChanges()
     {
-        $this->assertDatabaseMissing('changes', [
+        $this->assertDatabaseMissing(
+            'changes', [
             'model' => 'App\Article',
-        ]);
+            ]
+        );
 
         // Make an article that isn't published
-        $article = factory(Article::class)->create([
+        $article = factory(Article::class)->create(
+            [
             'public' => 0,
-        ]);
-        $this->assertDatabaseMissing('changes', [
+            ]
+        );
+        $this->assertDatabaseMissing(
+            'changes', [
             'model' => 'App\Article',
             'action' => 'published',
-        ]);
-        $this->assertDatabaseMissing('changes', [
+            ]
+        );
+        $this->assertDatabaseMissing(
+            'changes', [
             'model' => 'App\Article',
             'action' => 'unpublished',
-        ]);
+            ]
+        );
 
         // Publish it
         $article->public = 1;
         $article->updated_at = Carbon::now()->addSecond(1);
         $article->save();
-        $this->assertDatabaseHas('changes', [
+        $this->assertDatabaseHas(
+            'changes', [
             'model' => 'App\Article',
             'action' => 'published',
-        ]);
-        $this->assertDatabaseMissing('changes', [
+            ]
+        );
+        $this->assertDatabaseMissing(
+            'changes', [
             'model' => 'App\Article',
             'action' => 'unpublished',
-        ]);
+            ]
+        );
 
         // Confirm that only changing the published state does not create a
         // change
-        $this->assertDatabaseMissing('changes', [
+        $this->assertDatabaseMissing(
+            'changes', [
             'model' => 'App\Article',
             'action' => 'updated',
-        ]);
+            ]
+        );
 
         // Unpublish it
         $article->public = 0;
         $article->save();
-        $this->assertDatabaseHas('changes', [
+        $this->assertDatabaseHas(
+            'changes', [
             'model' => 'App\Article',
             'action' => 'published',
-        ]);
-        $this->assertDatabaseHas('changes', [
+            ]
+        );
+        $this->assertDatabaseHas(
+            'changes', [
             'model' => 'App\Article',
             'action' => 'unpublished',
-        ]);
-        $this->assertDatabaseMissing('changes', [
+            ]
+        );
+        $this->assertDatabaseMissing(
+            'changes', [
             'model' => 'App\Article',
             'action' => 'updated',
-        ]);
+            ]
+        );
 
         // No update should be written
-        $this->assertDatabaseMissing('changes', [
+        $this->assertDatabaseMissing(
+            'changes', [
             'model' => 'App\Article',
             'action' => 'updated',
-        ]);
+            ]
+        );
     }
 }

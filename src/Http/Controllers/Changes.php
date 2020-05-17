@@ -65,7 +65,7 @@ class Changes extends Base
         ];
 
         return $options;
-     }
+    }
 
     /**
      * Only reading is possible
@@ -83,21 +83,23 @@ class Changes extends Base
      * Customize the edit view to return the changed attributes as JSON. Using
      * this method / action so that a new routing rule doesn't need to be created
      *
-     * @param  int                      $id Model key
+     * @param  int $id Model key
      * @return Illuminate\Http\Response
      */
     public function edit($id)
     {
         $change = Change::findOrFail($id);
         $admin = $change->admin;
-        return Response::json([
+        return Response::json(
+            [
             'action' => __("facilitador::changes.actions.$change->action"),
             'title' => $change->title,
             'admin' => $admin ? $admin->getAdminTitleHtmlAttribute() : 'someone',
             'admin_edit' => $admin ? $admin->getAdminEditAttribute() : null,
             'date' => $change->getHumanDateAttribute(),
             'attributes' => $change->attributesForModal(),
-        ]);
+            ]
+        );
     }
 
     /**

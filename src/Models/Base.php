@@ -27,7 +27,7 @@ abstract class Base extends Eloquent
      * @var array
      */
     // public $rules = [];
-	public $rules = [
+    public $rules = [
         
     ];
     

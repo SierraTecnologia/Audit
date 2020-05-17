@@ -45,22 +45,26 @@ trait Loggable
     }
 
      /**
-     * Boot events
-     *
-     * @return void
-     */
+      * Boot events
+      *
+      * @return void
+      */
     public static function bootLoggable()
     {
         // Add scope that will fetch trashed versions of models when the
         // Change::QUERY_KEY is present.
-        static::addGlobalScope(static::$LOGGABLE_SCOPE, function (Builder $builder) {
-            static::showTrashedVersion($builder);
-        });
+        static::addGlobalScope(
+            static::$LOGGABLE_SCOPE, function (Builder $builder) {
+                static::showTrashedVersion($builder);
+            }
+        );
 
         // Substitute attribute values from changes on load
-        static::retrieved(function($model) {
-            $model->replaceAttributesWithChange();
-        });
+        static::retrieved(
+            function ($model) {
+                $model->replaceAttributesWithChange();
+            }
+        );
     }
 
     /**
@@ -86,7 +90,8 @@ trait Loggable
     private static function showTrashedVersion(Builder $builder)
     {
         if (($change = static::lookupRequestedChange())
-            && static::builderMatchesChange($change, $builder)) {
+            && static::builderMatchesChange($change, $builder)
+        ) {
             $builder->withoutGlobalScope(SoftDeletingScope::class);
         }
     }
@@ -121,7 +126,7 @@ trait Loggable
      * Does the Change referenced in the GET query match the conditions already
      * applied in the query builder?
      *
-     * @param  Change $change
+     * @param  Change  $change
      * @param  Builder $builder
      * @return boolean
      */
@@ -130,27 +135,29 @@ trait Loggable
         $class = $change->model;
         $route_key_name = (new $class)->getRouteKeyName();
         return collect($builder->getQuery()->wheres)
-            ->contains(function($where) use ($change, $route_key_name) {
+            ->contains(
+                function ($where) use ($change, $route_key_name) {
 
-                // If the builder is keyed to a simple "id" in the route, return
-                // whether the Change matches it.
-                if ($route_key_name == 'id') {
-                    return $where['column'] == $route_key_name
+                    // If the builder is keyed to a simple "id" in the route, return
+                    // whether the Change matches it.
+                    if ($route_key_name == 'id') {
+                        return $where['column'] == $route_key_name
                         && $where['operator'] == '='
                         && $where['value'] == $change->key;
 
-                // Otherwise compare against model logged by the change. The
-                // scope needs to be removed to prevent recursion.
-                } else {
-                    $value = $change->changedModel()
-                        ->withoutGlobalScope(static::$LOGGABLE_SCOPE)
-                        ->first()
-                        ->$route_key_name;
-                    return $where['column'] == $route_key_name
+                        // Otherwise compare against model logged by the change. The
+                        // scope needs to be removed to prevent recursion.
+                    } else {
+                        $value = $change->changedModel()
+                            ->withoutGlobalScope(static::$LOGGABLE_SCOPE)
+                            ->first()
+                            ->$route_key_name;
+                        return $where['column'] == $route_key_name
                         && $where['operator'] == '='
                         && $where['value'] == $value;
+                    }
                 }
-        });
+            );
     }
 
     /**
@@ -162,7 +169,8 @@ trait Loggable
     private function replaceAttributesWithChange()
     {
         if (($change = static::lookupRequestedChange())
-            && $change->key == $this->getKey()) {
+            && $change->key == $this->getKey()
+        ) {
             $this->attributes = array_merge(
                 $this->attributes,
                 $this->attributesAtChange($change)
@@ -179,9 +187,11 @@ trait Loggable
     private function attributesAtChange(Change $change)
     {
         return $this->previousChanges($change)
-            ->reduce(function($attributes, $change) {
-                return array_merge($attributes, $change->changed);
-            }, []);
+            ->reduce(
+                function ($attributes, $change) {
+                    return array_merge($attributes, $change->changed);
+                }, []
+            );
     }
 
     /**

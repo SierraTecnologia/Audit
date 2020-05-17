@@ -9,7 +9,7 @@ class CreateAdmins extends Migration
      * Run the migrations.
      *
      * @return void
-     * @link https://scotch.io/tutorials/simple-and-easy-laravel-login-authentication
+     * @link   https://scotch.io/tutorials/simple-and-easy-laravel-login-authentication
      */
     public function up()
     {

@@ -25,9 +25,11 @@ class Changes
     /**
      * Handle all Eloquent model events
      *
-     * @param  string $event
-     * @param  array $payload Contains:
-     *    - Audit\Models\Base $model
+     * @param string $event
+     * @param array  $payload Contains:
+     *                        -
+     *                        Audit\Models\Base
+     *                        $model
      */
     public function handle($event, $payload)
     {
