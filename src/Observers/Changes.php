@@ -38,9 +38,6 @@ class Changes
             return;
         }
 
-        \Log::debug('[Audit] Log Changes: '.print_r($event, true).print_r($payload, true));
-        // Get the admin acting on the record
-        $admin =  $this->getUser();
 
         // If `log_changes` was configed as a callable, see if this model event
         // should not be logged
@@ -48,6 +45,8 @@ class Changes
             if (is_bool($check) && !$check) {
                 return;
             }
+            // Get the admin acting on the record
+            $admin =  $this->getUser();
             if (is_callable($check)) {
                 if (!call_user_func($check, $model, $this->action, $admin)) {
                     return;
@@ -66,6 +65,8 @@ class Changes
         } else {
             return;
         }
+        \Log::debug('[Audit] Log Changes: '.get_class($model));
+        // \Log::debug('[Audit] Log Changes: '.print_r($event, true).print_r($payload, true));
 
         // Log the event
         Change::log($model, $this->action, $admin);
@@ -108,11 +109,29 @@ class Changes
 
     protected function getDontLog()
     {
-        return \Illuminate\Support\Facades\Config::get('sitec.audit.dontLog');
+        return \Illuminate\Support\Facades\Config::get(
+            'sitec.audit.dontLog',
+            [
+                \Aschmelyun\Larametrics\Models\LarametricsLog::class,
+                \Illuminate\Database\Eloquent\Relations\Pivot::class,
+            ]
+        );
     }
 
     protected function getDontLogAlias()
     {
-        return \Illuminate\Support\Facades\Config::get('sitec.audit.dontLogAlias');
+        return \Illuminate\Support\Facades\Config::get(
+            'sitec.audit.dontLogAlias',
+            [
+                'Tracking\Models',
+                'Analytics',
+                'Spatie\Analytics',
+                'Wnx\LaravelStats',
+                'Aschmelyun\Larametrics\Models',
+                'Laravel\Horizon',
+                'Support\Models\\Ardent',
+                'Support\Models\\Coder',
+            ]
+        );
     }
 }

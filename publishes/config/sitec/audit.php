@@ -11,7 +11,9 @@ return [
         'Spatie\Analytics',
         'Wnx\LaravelStats',
         'Aschmelyun\Larametrics\Models',
-        'Laravel\Horizon'
+        'Laravel\Horizon',
+        'Support\Models\\Ardent',
+        'Support\Models\\Coder',
     ],
 
 ];
