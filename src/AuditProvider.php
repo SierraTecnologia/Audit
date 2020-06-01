@@ -36,10 +36,6 @@ class AuditProvider extends ServiceProvider
         \Audit\Providers\TelescopeServiceProvider::class,
         
         /**
-         * 
-         */
-        \Population\PopulationProvider::class,
-        /**
          * Externos
          */
         \Laravel\Telescope\TelescopeServiceProvider::class,
