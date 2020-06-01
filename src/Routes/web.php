@@ -1,7 +1,7 @@
 <?php
 
 Route::group(
-    ['middleware' => ['web']], function () {  
+    ['middleware' => ['web', 'system']], function () {  
         // Route::group(['middleware' => ['audit-analytics']], function () {
         Route::prefix('audit')->group(
             function () {
