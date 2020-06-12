@@ -5,7 +5,7 @@
  * 2 -> User Log
  */
 
-namespace Audit\Models\Actions\Log;
+namespace Audit\Models\Log;
 
 use Audit\Models\Base;
 

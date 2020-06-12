@@ -1,6 +1,6 @@
 <?php
 
-namespace Audit\Http\Controllers\Admin;
+namespace Audit\Http\Controllers;
 
 use App;
 use URL;

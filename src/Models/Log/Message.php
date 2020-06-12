@@ -3,7 +3,7 @@
  * Registra as Mensagens de Logs
  */
 
-namespace Audit\Models\Actions\Log;
+namespace Audit\Models\Log;
 
 use Audit\Models\Base;
 

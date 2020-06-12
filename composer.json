@@ -11,9 +11,9 @@
     "require": {
         "php": ">=7.0",
         "kassner/log-parser": "^2.0",
-        "rap2hpoutre/laravel-log-viewer": "^1.6",
-        "laravel/telescope": "^2.0",
-        "spatie/laravel-activitylog": "^3.14"
+        "rap2hpoutre/laravel-log-viewer": "^1.0",
+        "laravel/telescope": "^2.0|^3.0",
+        "spatie/laravel-activitylog": "^3.0"
     },
     "autoload": {
         "psr-4": {
