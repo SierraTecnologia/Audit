@@ -10,10 +10,10 @@
     ],
     "require": {
         "php": ">=7.0",
-        "kassner/log-parser": "*",
-        "rap2hpoutre/laravel-log-viewer": "*",
+        "kassner/log-parser": "^2.0",
+        "rap2hpoutre/laravel-log-viewer": "^1.6",
         "laravel/telescope": "^2.0",
-        "spatie/laravel-activitylog": "^3.6"
+        "spatie/laravel-activitylog": "^3.14"
     },
     "autoload": {
         "psr-4": {
