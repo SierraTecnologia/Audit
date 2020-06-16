@@ -393,16 +393,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v7.16.0",
+            "version": "v7.16.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "f7041427f0f95b81ec1ce217c5212a325edad8cb"
+                "reference": "dc9cd8338d222dec2d9962553639e08c4585fa5b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/f7041427f0f95b81ec1ce217c5212a325edad8cb",
-                "reference": "f7041427f0f95b81ec1ce217c5212a325edad8cb",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/dc9cd8338d222dec2d9962553639e08c4585fa5b",
+                "reference": "dc9cd8338d222dec2d9962553639e08c4585fa5b",
                 "shasum": ""
             },
             "require": {
@@ -546,7 +546,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2020-06-16T13:22:32+00:00"
+            "time": "2020-06-16T14:31:25+00:00"
         },
         {
             "name": "laravel/telescope",
