@@ -93,6 +93,9 @@ class AuditProvider extends ServiceProvider
          */
         Route::group([
             'namespace' => '\Audit\Http\Controllers',
+            'prefix' => \Illuminate\Support\Facades\Config::get('application.routes.main'),
+            'as' => 'rica.',
+            // 'middleware' => 'rica',
         ], function (/**$router**/) {
             require __DIR__.'/Routes/web.php';
         });
@@ -110,7 +113,7 @@ class AuditProvider extends ServiceProvider
     public function register()
     {
         // Merge own configs into user configs 
-        $this->mergeConfigFrom($this->getPublishesPath('config/sitec/audit.php'), 'sitec.audit');
+        $this->mergeConfigFrom($this->getPublishesPath('config/application/modelagem.php'), 'sitec.audit');
 
         $this->mergeConfigFrom($this->getPublishesPath('config/activitylog.php'), 'activitylog');
         $this->mergeConfigFrom($this->getPublishesPath('config/logging.php'), 'logging');

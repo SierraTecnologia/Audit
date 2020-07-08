@@ -129,8 +129,9 @@ class Changes
                 'Wnx\LaravelStats',
                 'Aschmelyun\Larametrics\Models',
                 'Laravel\Horizon',
-                'Support\Models\\Ardent',
-                'Support\Models\\Coder',
+                'Support\Models\Application',
+                'Support\Models\Ardent',
+                'Support\Models\Code',
             ]
         );
     }
