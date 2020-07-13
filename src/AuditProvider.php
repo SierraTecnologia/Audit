@@ -57,7 +57,7 @@ class AuditProvider extends ServiceProvider
             'Audits' => [
                 [
                     'text'        => 'Logs',
-                    'route'       => 'larametrics::metrics.index',
+                    'route'       => 'rica.larametrics::metrics.index',
                     'icon'        => 'dashboard',
                     'icon_color'  => 'blue',
                     'label_color' => 'success',
@@ -66,7 +66,7 @@ class AuditProvider extends ServiceProvider
                 ],
                 [
                     'text'        => 'Telescope',
-                    'route'       => 'telescope',
+                    'route'       => 'rica.telescope',
                     'icon'        => 'dashboard',
                     'icon_color'  => 'blue',
                     'label_color' => 'success',
@@ -75,7 +75,7 @@ class AuditProvider extends ServiceProvider
                 ],
                 [
                     'text'        => 'Horizon',
-                    'route'       => 'horizon.index',
+                    'route'       => 'rica.horizon.index',
                     'icon'        => 'dashboard',
                     'icon_color'  => 'blue',
                     'label_color' => 'success',
