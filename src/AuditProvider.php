@@ -47,6 +47,13 @@ class AuditProvider extends ServiceProvider
      */
     public static $menuItens = [
         'System' => [
+            [
+                'text' => 'Audits',
+                'icon' => 'fas fa-fw fa-search',
+                'icon_color' => "blue",
+                'label_color' => "success",
+                'level'       => 2, // 0 (Public), 1, 2 (Admin) , 3 (Root)
+            ],
             'Audits' => [
                 [
                     'text'        => 'Logs',
@@ -54,6 +61,7 @@ class AuditProvider extends ServiceProvider
                     'icon'        => 'dashboard',
                     'icon_color'  => 'blue',
                     'label_color' => 'success',
+                    'level'       => 2,
                     // 'access' => \App\Models\Role::$ADMIN
                 ],
                 [
@@ -62,6 +70,7 @@ class AuditProvider extends ServiceProvider
                     'icon'        => 'dashboard',
                     'icon_color'  => 'blue',
                     'label_color' => 'success',
+                    'level'       => 2,
                     // 'access' => \App\Models\Role::$ADMIN
                 ],
                 [
@@ -70,6 +79,7 @@ class AuditProvider extends ServiceProvider
                     'icon'        => 'dashboard',
                     'icon_color'  => 'blue',
                     'label_color' => 'success',
+                    'level'       => 2,
                     // 'access' => \App\Models\Role::$ADMIN
                 ],
             ],
@@ -97,7 +107,7 @@ class AuditProvider extends ServiceProvider
             'as' => 'rica.',
             // 'middleware' => 'rica',
         ], function (/**$router**/) {
-            require __DIR__.'/Routes/web.php';
+            require __DIR__.'/../routes/web.php';
         });
 
 
@@ -122,7 +132,7 @@ class AuditProvider extends ServiceProvider
 
         // Register external packages
         $this->setProviders();
-        $this->loadMigrationsFrom(__DIR__.'/Migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
 
         // // Configs
         // $this->app->config->set('Audit.modules.Audit', include(__DIR__.'/config.php'));
