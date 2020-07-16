@@ -66,7 +66,7 @@ class AuditProvider extends ServiceProvider
                 ],
                 [
                     'text'        => 'Telescope',
-                    'route'       => 'rica.telescope',
+                    'route'       => 'telescope',
                     'icon'        => 'dashboard',
                     'icon_color'  => 'blue',
                     'label_color' => 'success',
@@ -75,7 +75,7 @@ class AuditProvider extends ServiceProvider
                 ],
                 [
                     'text'        => 'Horizon',
-                    'route'       => 'rica.horizon.index',
+                    'route'       => 'horizon.index',
                     'icon'        => 'dashboard',
                     'icon_color'  => 'blue',
                     'label_color' => 'success',
