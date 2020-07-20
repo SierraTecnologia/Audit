@@ -1,8 +1,25 @@
 {
     "name": "sierratecnologia/audit",
     "description": "Audit",
+    "type": "library",
+    "keywords": [
+        "sierratecnologia",
+        "audit"
+    ],
     "license": "MIT",
+    "homepage": "https://sierratecnologia.com/packages/audit/",
+    "support": {
+        "email": "help@sierratecnologia.com",
+        "issues": "https://github.com/sierratecnologia/audit/issues",
+        "source": "https://github.com/sierratecnologia/audit",
+        "docs": "https://github.com/sierratecnologia/audit/blob/master/README.md"
+    },
     "authors": [
+        {
+            "name": "SierraTecnologia",
+            "homepage": "https://sierratecnologia.com.br",
+            "email": "help@sierratecnologia.com.br"
+        },
         {
             "name": "Ricardo Rebello Sierra",
             "email": "contato@ricardosierra.com.br"

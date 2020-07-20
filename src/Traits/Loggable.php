@@ -10,8 +10,8 @@ use Facilitador\Models\Image;
 use Facilitador;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Support\Traits\Models\SerializeWithImages;
-use Support\Traits\Models\CanSerializeTransform;
+use Muleta\Traits\Models\SerializeWithImages;
+use Muleta\Traits\Models\CanSerializeTransform;
 
 /**
  * Enable logging changes to models
