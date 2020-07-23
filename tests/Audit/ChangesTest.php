@@ -1,5 +1,5 @@
 <?php
-namespace Tests\Integration;
+namespace Tests\Audit;
 
 use App\Article;
 use App\Tag;
