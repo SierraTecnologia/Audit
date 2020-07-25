@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['as' => 'larametrics::'], function () {
+Route::group(['as' => 'rica.larametrics::'], function () {
 
     // dashboard routes
     Route::get('/metrics', [
