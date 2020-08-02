@@ -6,7 +6,7 @@ namespace Audit\Traits;
 use App;
 use Facilitador\Models\Admin;
 use Audit\Models\Change;
-use Facilitador\Models\Image;
+use Stalker\Models\Image;
 use Facilitador;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
