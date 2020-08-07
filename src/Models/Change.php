@@ -5,7 +5,7 @@ namespace Audit\Models;
 use DB;
 use Facilitador;
 use Config;
-use FacilitadorURL;
+use SupportURL;
 use Illuminate\Support\Str;
 use Support\Template\Input\Search;
 use Bkwld\Library\Utils\Text;
@@ -456,7 +456,7 @@ class Change extends Base
      */
     public function filterUrl($query)
     {
-        return FacilitadorURL::action('changes').'?'.Search::query($query);
+        return SupportURL::action('changes').'?'.Search::query($query);
     }
 
     /**
@@ -472,7 +472,7 @@ class Change extends Base
                 '<a href="%s"
                 class="glyphicon glyphicon-export js-tooltip changes-modal-link"
                 title="%s" data-placement="left"></a>',
-                FacilitadorURL::action('changes@edit', $this->id),
+                SupportURL::action('changes@edit', $this->id),
                 __('facilitador::changes.standard_list.view')
             );
         }

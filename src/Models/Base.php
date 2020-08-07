@@ -9,7 +9,7 @@ use Facilitador;
 use Event;
 use Config;
 use Session;
-use FacilitadorURL;
+use SupportURL;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 use Log;
 
