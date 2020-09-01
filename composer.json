@@ -26,7 +26,7 @@
         }
     ],
     "require": {
-        "php": ">=7.0",
+        "php": "^7.4",
         "kassner/log-parser": "^2.0",
         "rap2hpoutre/laravel-log-viewer": "^1.0",
         "laravel/telescope": "^2.0|^3.0",
