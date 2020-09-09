@@ -2,19 +2,25 @@
 
 namespace Audit;
 
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\View;
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Collection;
-use Illuminate\Foundation\AliasLoader;
-use Illuminate\Support\Facades\Schema;
-use Route;
-use Illuminate\Routing\Router;
 use Audit\Http\Middleware\Audits;
 use Audit\Http\Middleware\isAjax;
+use Illuminate\Foundation\AliasLoader;
+use Illuminate\Routing\Router;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\ServiceProvider;
+use Muleta\Traits\Providers\ConsoleTools;
+use Route;
 
 class AuditProvider extends ServiceProvider
 {
+    use ConsoleTools;
+
+    public $packageName = 'audit';
+    const pathVendor = 'sierratecnologia/audit';
+
     // @todo Usar Tools aqui pro providers
     /**
      * This namespace is applied to the controller routes in your routes file.
@@ -52,6 +58,7 @@ class AuditProvider extends ServiceProvider
                 'icon' => 'fas fa-fw fa-search',
                 'icon_color' => "blue",
                 'label_color' => "success",
+                'section' => "rica",
                 'level'       => 2, // 0 (Public), 1, 2 (Admin) , 3 (Root)
             ],
             'Audits' => [
@@ -62,6 +69,7 @@ class AuditProvider extends ServiceProvider
                     'icon_color'  => 'blue',
                     'label_color' => 'success',
                     'level'       => 2,
+                    'section' => "rica",
                     // 'access' => \App\Models\Role::$ADMIN
                 ],
                 [
@@ -71,6 +79,7 @@ class AuditProvider extends ServiceProvider
                     'icon_color'  => 'blue',
                     'label_color' => 'success',
                     'level'       => 2,
+                    'section' => "rica",
                     // 'access' => \App\Models\Role::$ADMIN
                 ],
                 [
@@ -79,6 +88,7 @@ class AuditProvider extends ServiceProvider
                     'icon'        => 'dashboard',
                     'icon_color'  => 'blue',
                     'label_color' => 'success',
+                    'section' => "rica",
                     'level'       => 2,
                     // 'access' => \App\Models\Role::$ADMIN
                 ],
@@ -99,16 +109,9 @@ class AuditProvider extends ServiceProvider
         
 
         /**
-         * Audit Routes
+         * Transmissor; Routes
          */
-        Route::group([
-            'namespace' => '\Audit\Http\Controllers',
-            'prefix' => \Illuminate\Support\Facades\Config::get('application.routes.main'),
-            'as' => 'rica.',
-            // 'middleware' => 'rica',
-        ], function (/**$router**/) {
-            require __DIR__.'/../routes/web.php';
-        });
+        $this->loadRoutesForRiCa(__DIR__.'/../routes');
 
 
         // Log model change events after others in case they modified the record
@@ -122,7 +125,7 @@ class AuditProvider extends ServiceProvider
      */
     public function register()
     {
-        // Merge own configs into user configs 
+        // Merge own configs into user configs
         $this->mergeConfigFrom($this->getPublishesPath('config/application/modelagem.php'), 'sitec.audit');
 
         $this->mergeConfigFrom($this->getPublishesPath('config/activitylog.php'), 'activitylog');
@@ -180,7 +183,6 @@ class AuditProvider extends ServiceProvider
 
         $this->loadViews();
         $this->loadTranslations();
-
     }
 
     private function loadViews()
@@ -249,5 +251,4 @@ class AuditProvider extends ServiceProvider
             $loader->alias($alias, $class);
         });
     }
-
 }
