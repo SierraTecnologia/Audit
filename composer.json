@@ -27,9 +27,13 @@
     ],
     "require": {
         "php": "^7.4",
+        "sierratecnologia/muleta": "dev-master",
+        "sierratecnologia/pedreiro": "dev-master",
+        "sentry/sentry-laravel": "^1.8",
         "kassner/log-parser": "^2.0",
         "rap2hpoutre/laravel-log-viewer": "^1.0",
         "laravel/telescope": "^2.0|^3.0",
+        "owen-it/laravel-auditing/laravel-activitylog": "^10.0",
         "spatie/laravel-activitylog": "^3.0"
     },
     "autoload": {
