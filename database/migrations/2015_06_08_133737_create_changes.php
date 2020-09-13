@@ -48,6 +48,6 @@ class CreateChanges extends Migration
      */
     public function down()
     {
-        Schema::drop('changes');
+        Schema::dropIfExists('changes');
     }
 }
