@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Audit\Events;
 
 use Exception;
-use Facilitador\Models\Value;
+use Pedreiro\Models\Value;
 use Support\Support\ValueCollection;
 use Illuminate\Database\Eloquent\Model as Entity;
 
@@ -80,7 +80,7 @@ class EntityWasSaved
     /**
      * Save or trash the given value according to it's content.
      *
-     * @param \Facilitador\Models\Value $value
+     * @param \Pedreiro\Models\Value $value
      *
      * @return void
      */
@@ -101,7 +101,7 @@ class EntityWasSaved
     /**
      * Trash the given value.
      *
-     * @param \Facilitador\Models\Value $value
+     * @param \Pedreiro\Models\Value $value
      *
      * @return bool
      */
