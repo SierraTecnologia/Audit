@@ -7,7 +7,7 @@ use Facilitador;
 use Config;
 use SupportURL;
 use Illuminate\Support\Str;
-use Support\Template\Input\Search;
+use Pedreiro\Template\Input\Search;
 use Bkwld\Library\Utils\Text;
 use Illuminate\Database\Eloquent\Model;
 use Audit\Models\Base;

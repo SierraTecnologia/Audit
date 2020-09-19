@@ -6,7 +6,7 @@ namespace Audit\Events;
 
 use Exception;
 use Pedreiro\Models\Value;
-use Support\Support\ValueCollection;
+use Pedreiro\Support\ValueCollection;
 use Illuminate\Database\Eloquent\Model as Entity;
 
 class EntityWasSaved

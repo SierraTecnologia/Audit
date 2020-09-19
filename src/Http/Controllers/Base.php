@@ -15,7 +15,7 @@ use Response;
 use stdClass;
 use Validator;
 use Illuminate\Support\Str;
-use Support\Template\Input\Search;
+use Pedreiro\Template\Input\Search;
 use Bkwld\Library\Utils\File;
 use Facilitador\Input\Sidebar;
 use Pedreiro\Elements\Fields\Listing;
@@ -25,7 +25,7 @@ use Facilitador\Input\NestedModels;
 use Facilitador\Input\ModelValidator;
 use Facilitador\Models\Base as BaseModel;
 use Facilitador\Http\Controllers\Admin\Base as Controller;
-use Support\Exceptions\ValidationFail;
+use Pedreiro\Exceptions\ValidationFail;
 use Bkwld\Library\Laravel\Validator as BkwldLibraryValidator;
 
 /**
