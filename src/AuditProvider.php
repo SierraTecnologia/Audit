@@ -116,8 +116,10 @@ class AuditProvider extends ServiceProvider
 
         // Log model change events after others in case they modified the record
         // before being saved.
-        $this->app['events']->listen('eloquent.*',
-            'Audit\Observers\Changes');
+        $this->app['events']->listen(
+            'eloquent.*',
+            'Audit\Observers\Changes'
+        );
     }
 
     /**
@@ -158,7 +160,8 @@ class AuditProvider extends ServiceProvider
     public function registerDirectories()
     {
         // Publish config files
-        $this->publishes([
+        $this->publishes(
+            [
             // Paths
             $this->getPublishesPath('config/sitec') => config_path('sitec'),
             // Files
@@ -166,7 +169,8 @@ class AuditProvider extends ServiceProvider
             $this->getPublishesPath('config/logging.php') => config_path('logging.php'),
             $this->getPublishesPath('config/logviewer.php') => config_path('logviewer.php'),
             $this->getPublishesPath('config/telescope.php') => config_path('telescope.php')
-        ], ['config',  'sitec', 'sitec-config']);
+            ], ['config',  'sitec', 'sitec-config']
+        );
 
         // // Publish audit css and js to public directory
         // $this->publishes([
@@ -176,9 +180,11 @@ class AuditProvider extends ServiceProvider
 
 
         // Publish audit css and js to public directory
-        $this->publishes([
+        $this->publishes(
+            [
             $this->getPublishesPath('public/telescope') => public_path('vendor/telescope'),
-        ], ['public',  'sitec', 'sitec-public']);
+            ], ['public',  'sitec', 'sitec-public']
+        );
 
 
         $this->loadViews();
@@ -190,10 +196,12 @@ class AuditProvider extends ServiceProvider
         // View namespace
         $viewsPath = $this->getResourcesPath('views');
         $this->loadViewsFrom($viewsPath, 'audit');
-        $this->publishes([
+        $this->publishes(
+            [
             $viewsPath => base_path('resources/views/vendor/audit'),
             $this->getPublishesPath('views/laravel-log-viewer') => base_path('resources/views/vendor/laravel-log-viewer'),
-        ], ['views',  'sitec', 'sitec-views', 'audit-views']);
+            ], ['views',  'sitec', 'sitec-views', 'audit-views']
+        );
 
 
         // // Publish lanaguage files
@@ -238,17 +246,21 @@ class AuditProvider extends ServiceProvider
     private function setProviders()
     {
         $this->setDependencesAlias();
-        (new Collection(self::$providers))->map(function ($provider) {
-            if (class_exists($provider)) {
-                $this->app->register($provider);
+        (new Collection(self::$providers))->map(
+            function ($provider) {
+                if (class_exists($provider)) {
+                    $this->app->register($provider);
+                }
             }
-        });
+        );
     }
     private function setDependencesAlias()
     {
         $loader = AliasLoader::getInstance();
-        (new Collection(self::$aliasProviders))->map(function ($class, $alias) use ($loader) {
-            $loader->alias($alias, $class);
-        });
+        (new Collection(self::$aliasProviders))->map(
+            function ($class, $alias) use ($loader) {
+                $loader->alias($alias, $class);
+            }
+        );
     }
 }
