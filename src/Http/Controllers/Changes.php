@@ -14,17 +14,17 @@ class Changes extends Base
     /**
      * @var string
      */
-    protected $title = 'Changes';
+    public $title = 'Changes';
 
     /**
      * @var string
      */
-    protected $description = 'A log of actions that can be used to audit <b>Admin</b> activity or recover content.';
+    public $description = 'A log of actions that can be used to audit <b>Admin</b> activity or recover content.';
 
     /**
      * @var array
      */
-    protected $columns = [
+    public $columns = [
         'Activity' => 'getAdminTitleHtmlAttribute',
     ];
 
