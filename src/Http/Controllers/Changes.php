@@ -86,7 +86,7 @@ class Changes extends Base
      * @param  int $id Model key
      * @return Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         $change = Change::findOrFail($id);
         $admin = $change->admin;
