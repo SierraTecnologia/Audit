@@ -10,11 +10,19 @@ use Audit\Models\Base;
 class Message extends Base
 {
 
-    protected $organizationPerspective = false;
+    /**
+     * @var false
+     */
+    protected bool $organizationPerspective = false;
 
-    public $table = 'log_messages';
+    public string $table = 'log_messages';
 
-    protected $casts = [
+    /**
+     * @var string[]
+     *
+     * @psalm-var array{order_params: string}
+     */
+    protected array $casts = [
         'order_params' => 'json',
     ];
 
@@ -34,7 +42,12 @@ class Message extends Base
         'user_id'
     ];
 
-    protected $mappingProperties = array(
+    /**
+     * @var string[][]
+     *
+     * @psalm-var array{customer_id: array{type: string, analyzer: string}}
+     */
+    protected array $mappingProperties = array(
         'customer_id' => [
           'type' => 'integer',
           "analyzer" => "standard",

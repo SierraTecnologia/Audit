@@ -8,12 +8,9 @@ use Audit\Models\Audits;
 
 class AuditsService
 {
-    public function __construct(Audits $model)
-    {
-        $this->model = $model;
-    }
 
-    public function log($request)
+
+    public function log(\Illuminate\Http\Request $request): void
     {
         $requestData = json_encode(
             [

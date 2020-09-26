@@ -35,7 +35,12 @@ class Change extends Base
         'changed' => 'array',
     ];
 
-    protected $fillable = [
+    /**
+     * @var string[]
+     *
+     * @psalm-var array{0: string, 1: string, 2: string, 3: string, 4: string, 5: string, 6: string, 7: string, 8: string, 9: string, 10: string}
+     */
+    protected array $fillable = [
         'admin',
         'key',
         'changeable_id',
@@ -51,55 +56,15 @@ class Change extends Base
     ];
 
     /**
-     * Get the admin associated with the change
-     *
-     * @return Illuminate\Database\Eloquent\Relations\Relation
-     */
-    public function admin()
-    {
-        return $this->belongsTo(\Illuminate\Support\Facades\Config::get('sitec.core.models.user', \App\Models\User::class));
-    }
-
-    /**
      * The polymorphic relation back to the parent model
      *
      * @var mixed
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
      */
-    public function loggable()
+    public function loggable(): \Illuminate\Database\Eloquent\Relations\MorphTo
     {
         return $this->morphTo('loggable', 'model', 'key');
-    }
-
-    /**
-     * Get the related model, including trashed instances
-     *
-     * @return Model
-     */
-    public function changedModel()
-    {
-        return $this->loggable()->withTrashed();
-    }
-
-    /**
-     * Default ordering by descending time, designed to be overridden
-     *
-     * @param  Illuminate\Database\Query\Builder $query
-     * @return Illuminate\Database\Query\Builder
-     */
-    public function scopeOrdered($query)
-    {
-        return $query->orderBy('changes.id', 'desc')->with('admin');
-    }
-
-    /**
-     * Don't log changes
-     *
-     * @param  string $action
-     * @return boolean
-     */
-    public function shouldLogChange($action)
-    {
-        return false;
     }
 
     /**
@@ -162,7 +127,7 @@ class Change extends Base
      * @param  string $action
      * @return array|null
      */
-    static private function getChanged(Model $model, $action)
+    static private function getChanged(Model $model, $action): ?array
     {
         $changed = $model->getDirty();
         if ($action == 'deleted' || empty($changed)) {
@@ -177,13 +142,16 @@ class Change extends Base
      * @param Model  $model  Th
      * @param string $action
      * @param User   $admin
+     * @param array|null $changed
+     *
+     * @return self
      */
     static protected function createLog(
         Model $model,
         $action,
         User $admin = null,
-        $changed = null
-    ) {
+        ?array $changed = null
+    ): self {
         return static::create(
             [
             'model' => get_class($model),
@@ -246,35 +214,9 @@ class Change extends Base
     }
 
     /**
-     * Return a list of all the actions currently being used as a hash for use
-     * in a select menu
-     *
-     * @return array
-     */
-    public static function getActions()
-    {
-        return static::groupBy('action')->pluck('action', 'action')
-            ->mapWithKeys(
-                function ($item) {
-                    return [$item => __("facilitador::changes.actions.$item")];
-                }
-            );
-    }
-
-    /**
-     * Return a list of all the admins as a hash for use in a select menu
-     *
-     * @return array
-     */
-    public static function getAdmins()
-    {
-        return User::all(['id', 'email'])->pluck('email', 'id');
-    }
-
-    /**
      * Format the the activity like a sentence
      *
-     * @return string HTML
+     * @return array|null|string HTML
      */
     public function getAdminTitleHtmlAttribute()
     {
@@ -363,7 +305,7 @@ class Change extends Base
      * Get the title of the model. Perhaps in the future there will be more smarts
      * here, like generating a link to the edit view
      *
-     * @return string HTML
+     * @return null|string HTML
      */
     public function getLinkedTitleAttribute()
     {
@@ -416,138 +358,14 @@ class Change extends Base
     }
 
     /**
-     * Customize the action links
-     *
-     * @param  array $data The data passed to a listing view
-     * @return array
-     */
-    public function makeAdminActions($data)
-    {
-        return array_filter(
-            [
-            $this->filter_action,
-            $this->changes_action,
-            $this->preview_action,
-            ]
-        );
-    }
-
-    /**
-     * Make the preview filter icon
-     *
-     * @return string
-     */
-    public function getFilterActionAttribute()
-    {
-        return sprintf(
-            '<a href="%s"
-            class="glyphicon glyphicon-filter js-tooltip"
-            title="' . __('facilitador::changes.standard_list.filter') . '"
-            data-placement="left"></a>',
-            $this->filterUrl(['model' => $this->model, 'key' => $this->key]),
-            strip_tags($this->getModelNameHtmlAttribute())
-        );
-    }
-
-    /**
      * Make a link to filter the result set
      *
      * @return string
+     *
+     * @param (Model|mixed)[] $query
      */
-    public function filterUrl($query)
+    public function filterUrl(array $query)
     {
         return SupportURL::action('changes').'?'.Search::query($query);
-    }
-
-    /**
-     * Make the changes icon
-     *
-     * @return string
-     */
-    public function getChangesActionAttribute()
-    {
-        // If there are changes, add the modal button
-        if ($this->changed) {
-            return sprintf(
-                '<a href="%s"
-                class="glyphicon glyphicon-export js-tooltip changes-modal-link"
-                title="%s" data-placement="left"></a>',
-                SupportURL::action('changes@edit', $this->id),
-                __('facilitador::changes.standard_list.view')
-            );
-        }
-
-        // Else, show a disabled button
-        else {
-            return sprintf(
-                '<span
-            class="glyphicon glyphicon-export js-tooltip"
-            title="%s" data-placement="left"></span>', __('facilitador::changes.standard_list.no_changed')
-            );
-        }
-    }
-
-    /**
-     * Make link to preview a version as long as the model has a URI and the
-     * action wasn't a delete action.
-     *
-     * @return string
-     */
-    public function getPreviewActionAttribute()
-    {
-        if ($this->changedModel
-            && $this->changedModel->uri
-            && $this->action != 'deleted'
-        ) {
-            return sprintf(
-                '<a href="%s" target="_blank"
-                class="glyphicon glyphicon-bookmark js-tooltip"
-                title="%s" data-placement="left"></a>',
-                $this->preview_url,
-                __('facilitador::changes.standard_list.preview')
-            );
-        } else {
-            return '<span class="glyphicon glyphicon-bookmark disabled"></span>';
-        }
-    }
-
-    /**
-     * Make the preview URL for a the model
-     *
-     * @return string
-     */
-    public function getPreviewUrlAttribute()
-    {
-        return vsprintf(
-            '%s?%s=%s', [
-            $this->changedModel->uri,
-            static::QUERY_KEY,
-            $this->id,
-            ]
-        );
-    }
-
-    /**
-     * Get just the attributes that should be displayed in the admin modal.
-     *
-     * @return array
-     */
-    public function attributesForModal()
-    {
-        // Remove some specific attributes.  Leaving empties in there so the updating
-        // of values to NULL is displayed.
-        $attributes = array_except(
-            $this->changed, [
-            'id', 'updated_at', 'created_at', 'password', 'remember_token',
-            ]
-        );
-
-        // Make more readable titles
-        $out = [];
-        foreach ($attributes as $key => $val) {
-            $out[Text::titleFromKey($key)] = $val;
-        }
-
-        return $out;
     }
 }

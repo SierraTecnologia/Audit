@@ -18,24 +18,25 @@ class AuditProvider extends ServiceProvider
 {
     use ConsoleTools;
 
-    public $packageName = 'audit';
+    public string $packageName = 'audit';
     const pathVendor = 'sierratecnologia/audit';
 
     // @todo Usar Tools aqui pro providers
-    /**
-     * This namespace is applied to the controller routes in your routes file.
-     *
-     * In addition, it is set as the URL generator's root namespace.
-     *
-     * @var string
-     */
-    protected $namespace = 'Audit\Http\Controllers';
 
-    public static $aliasProviders = [
+
+    /**
+     * @var array
+     */
+    public static array $aliasProviders = [
         
     ];
 
-    public static $providers = [
+    /**
+     * @var Providers\TelescopeServiceProvider::class|\Laravel\Telescope\TelescopeServiceProvider::class|\Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class[]
+     *
+     * @psalm-var array{0: Providers\TelescopeServiceProvider::class, 1: \Laravel\Telescope\TelescopeServiceProvider::class, 2: \Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class}
+     */
+    public static array $providers = [
         /**
          * Configuracoes
          */
@@ -47,80 +48,6 @@ class AuditProvider extends ServiceProvider
         \Laravel\Telescope\TelescopeServiceProvider::class,
         \Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
     ];
-
-    /**
-     * Rotas do Menu
-     */
-    public static $menuItens = [
-        'System' => [
-            [
-                'text' => 'Audits',
-                'icon' => 'fas fa-fw fa-search',
-                'icon_color' => "blue",
-                'label_color' => "success",
-                'section' => "rica",
-                'level'       => 2, // 0 (Public), 1, 2 (Admin) , 3 (Root)
-            ],
-            'Audits' => [
-                [
-                    'text'        => 'Logs',
-                    'route'       => 'rica.larametrics::metrics.index',
-                    'icon'        => 'dashboard',
-                    'icon_color'  => 'blue',
-                    'label_color' => 'success',
-                    'level'       => 2,
-                    'section' => "rica",
-                    // 'access' => \App\Models\Role::$ADMIN
-                ],
-                [
-                    'text'        => 'Telescope',
-                    'route'       => 'telescope',
-                    'icon'        => 'dashboard',
-                    'icon_color'  => 'blue',
-                    'label_color' => 'success',
-                    'level'       => 2,
-                    'section' => "rica",
-                    // 'access' => \App\Models\Role::$ADMIN
-                ],
-                [
-                    'text'        => 'Horizon',
-                    'route'       => 'horizon.index',
-                    'icon'        => 'dashboard',
-                    'icon_color'  => 'blue',
-                    'label_color' => 'success',
-                    'section' => "rica",
-                    'level'       => 2,
-                    // 'access' => \App\Models\Role::$ADMIN
-                ],
-            ],
-        ],
-    ];
-
-    /**
-     * Alias the services in the boot.
-     */
-    public function boot(Router $router)
-    {
-        // Push middleware to web group
-        $router->pushMiddlewareToGroup('web', Audits::class);
-
-        // Register configs, migrations, etc
-        $this->registerDirectories();
-        
-
-        /**
-         * Transmissor; Routes
-         */
-        $this->loadRoutesForRiCa(__DIR__.'/../routes');
-
-
-        // Log model change events after others in case they modified the record
-        // before being saved.
-        $this->app['events']->listen(
-            'eloquent.*',
-            'Audit\Observers\Changes'
-        );
-    }
 
     /**
      * Register the services.
@@ -191,7 +118,7 @@ class AuditProvider extends ServiceProvider
         $this->loadTranslations();
     }
 
-    private function loadViews()
+    private function loadViews(): void
     {
         // View namespace
         $viewsPath = $this->getResourcesPath('views');
@@ -213,7 +140,7 @@ class AuditProvider extends ServiceProvider
         // $this->loadTranslationsFrom($this->getResourcesPath('lang'), 'audit');
     }
     
-    private function loadTranslations()
+    private function loadTranslations(): void
     {
         // $translationsPath = $this->getResourcesPath('lang');
         // $this->loadTranslationsFrom($translationsPath, 'audit');
@@ -224,26 +151,25 @@ class AuditProvider extends ServiceProvider
 
     /**
      * Configs Paths
+     *
+     * @return string
      */
-    private function getResourcesPath($folder)
+    private function getResourcesPath(string $folder): string
     {
         return __DIR__.'/../resources/'.$folder;
     }
 
-    private function getPublishesPath($folder)
+    private function getPublishesPath(string $folder): string
     {
         return __DIR__.'/../publishes/'.$folder;
     }
 
-    private function getDistPath($folder = '')
-    {
-        return __DIR__.'/../dist/'.$folder;
-    }
-
     /**
      * Load Alias and Providers
+     *
+     * @return void
      */
-    private function setProviders()
+    private function setProviders(): void
     {
         $this->setDependencesAlias();
         (new Collection(self::$providers))->map(
@@ -254,7 +180,7 @@ class AuditProvider extends ServiceProvider
             }
         );
     }
-    private function setDependencesAlias()
+    private function setDependencesAlias(): void
     {
         $loader = AliasLoader::getInstance();
         (new Collection(self::$aliasProviders))->map(

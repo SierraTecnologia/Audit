@@ -10,13 +10,21 @@ use Audit\Models\Base;
 class Occurrence extends Base
 {
 
-    protected $organizationPerspective = true;
+    /**
+     * @var true
+     */
+    protected bool $organizationPerspective = true;
 
-    protected $table = 'log_occurrences';                                                                                               
+    protected string $table = 'log_occurrences';                                                                                               
                                                                                                                                                                                                  
     public $errorMessage = null;                                                                                                                                                                 
                                                                                                                                                                                                  
-    public $rules =  [                                                                                                                                                                                 
+    /**
+     * @var string[]
+     *
+     * @psalm-var array{name: string, slug: string, symbol: string, circulating_supply: string, status: string}
+     */
+    public array $rules =  [                                                                                                                                                                                 
         'name' => 'required|name|max:255',                                                                                                                                    
         'slug' => 'required|slug|max:255',
         // Simbolo de 3 letras: Real (BRL), Bitcoin (BTC)                                                                                                                                
