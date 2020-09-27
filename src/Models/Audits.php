@@ -6,17 +6,16 @@ use Audit\Models\Base;
 
 class Audits extends Base
 {
-    
-    public string $table = 'audits';
+    public $table = 'audits';
 
-    public string $primaryKey = 'id';
+    public $primaryKey = 'id';
 
     /**
      * @var string[]
      *
      * @psalm-var array{0: string, 1: string}
      */
-    public array $fillable = [
+    public $fillable = [
         'token',
         'data',
     ];
@@ -24,5 +23,5 @@ class Audits extends Base
     /**
      * @var array
      */
-    public array $rules = [];
+    public $rules = [];
 }

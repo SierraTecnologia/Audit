@@ -15,14 +15,14 @@ class Message extends Base
      */
     protected bool $organizationPerspective = false;
 
-    public string $table = 'log_messages';
+    public $table = 'log_messages';
 
     /**
      * @var string[]
      *
      * @psalm-var array{order_params: string}
      */
-    protected array $casts = [
+    protected $casts = [
         'order_params' => 'json',
     ];
 

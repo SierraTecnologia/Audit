@@ -17,7 +17,7 @@ class Type extends Base
      */
     protected bool $organizationPerspective = false;
 
-    protected string $table = 'log_types';       
+    protected $table = 'log_types';
 
     /**
      * The attributes that are mass assignable.
@@ -36,7 +36,7 @@ class Type extends Base
      *
      * @psalm-var array{customer_id: array{type: string, analyzer: string}, credit_card_id: array{type: string, analyzer: string}, user_id: array{type: string, analyzer: string}, score: array{type: string, analyzer: string}}
      */
-    protected array $mappingProperties = array(
+    protected $mappingProperties = array(
 
         'customer_id' => [
             'type' => 'integer',
@@ -66,5 +66,4 @@ class Type extends Base
     {
         return $this->belongsTo(\Illuminate\Support\Facades\Config::get('sitec.core.models.user', \App\Models\User::class), 'user_id', 'id');
     }
-
 }

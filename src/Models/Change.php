@@ -2,16 +2,16 @@
 
 namespace Audit\Models;
 
+use App\Models\User;
+use Audit\Models\Base;
+use Bkwld\Library\Utils\Text;
+use Config;
 use DB;
 use Facilitador;
-use Config;
-use SupportURL;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Pedreiro\Template\Input\Search;
-use Bkwld\Library\Utils\Text;
-use Illuminate\Database\Eloquent\Model;
-use Audit\Models\Base;
-use App\Models\User;
+use SupportURL;
 
 /**
  * Reperesents a single model change event.  Typically a single CRUD action on
@@ -40,7 +40,7 @@ class Change extends Base
      *
      * @psalm-var array{0: string, 1: string, 2: string, 3: string, 4: string, 5: string, 6: string, 7: string, 8: string, 9: string, 10: string}
      */
-    protected array $fillable = [
+    protected $fillable = [
         'admin',
         'key',
         'changeable_id',
@@ -110,9 +110,10 @@ class Change extends Base
      * @param  string $action
      * @return boolean
      */
-    static private function shouldWriteChange(Model $model, $action)
+    private static function shouldWriteChange(Model $model, $action)
     {
-        if (in_array($action, ['created', 'deleted'])) { return true;
+        if (in_array($action, ['created', 'deleted'])) {
+            return true;
         }
         $changed_attributes = array_keys($model->getDirty());
         $ignored = ['updated_at', 'public'];
@@ -127,7 +128,7 @@ class Change extends Base
      * @param  string $action
      * @return array|null
      */
-    static private function getChanged(Model $model, $action): ?array
+    private static function getChanged(Model $model, $action): ?array
     {
         $changed = $model->getDirty();
         if ($action == 'deleted' || empty($changed)) {
@@ -146,7 +147,7 @@ class Change extends Base
      *
      * @return self
      */
-    static protected function createLog(
+    protected static function createLog(
         Model $model,
         $action,
         User $admin = null,
@@ -170,7 +171,7 @@ class Change extends Base
      * @param  Model $model
      * @return string
      */
-    static protected function getModelTitle(Model $model)
+    protected static function getModelTitle(Model $model)
     {
         return method_exists($model, 'getAdminTitleAttribute') ?
             $model->getAdminTitleAttribute() : null;
@@ -182,7 +183,7 @@ class Change extends Base
      * @param  User $admin
      * @return integer
      */
-    static protected function getAdminId(User $admin = null)
+    protected static function getAdminId(User $admin = null)
     {
         if (!$admin) {
             $admin = app('facilitador.user');
@@ -199,7 +200,7 @@ class Change extends Base
      * @param  User   $admin
      * @return void
      */
-    static public function logPublishingChange(
+    public static function logPublishingChange(
         Model $model,
         $action,
         User $admin = null
@@ -207,7 +208,7 @@ class Change extends Base
         if ($model->isDirty('public')) {
             if ($model->public) {
                 static::createLog($model, 'published', $admin);
-            } else if (!$model->public && $action != 'created') {
+            } elseif (!$model->public && $action != 'created') {
                 static::createLog($model, 'unpublished', $admin);
             }
         }
@@ -309,7 +310,8 @@ class Change extends Base
      */
     public function getLinkedTitleAttribute()
     {
-        if (!$this->title) { return;
+        if (!$this->title) {
+            return;
         }
         return sprintf(
             '<a href="%s">"%s"</a>',

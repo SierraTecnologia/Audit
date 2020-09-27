@@ -15,22 +15,22 @@ class Occurrence extends Base
      */
     protected bool $organizationPerspective = true;
 
-    protected string $table = 'log_occurrences';                                                                                               
+    protected $table = 'log_occurrences';
                                                                                                                                                                                                  
-    public $errorMessage = null;                                                                                                                                                                 
+    public $errorMessage = null;
                                                                                                                                                                                                  
     /**
      * @var string[]
      *
      * @psalm-var array{name: string, slug: string, symbol: string, circulating_supply: string, status: string}
      */
-    public array $rules =  [                                                                                                                                                                                 
-        'name' => 'required|name|max:255',                                                                                                                                    
+    public $rules =  [
+        'name' => 'required|name|max:255',
         'slug' => 'required|slug|max:255',
-        // Simbolo de 3 letras: Real (BRL), Bitcoin (BTC)                                                                                                                                
+        // Simbolo de 3 letras: Real (BRL), Bitcoin (BTC)
         'symbol' => 'required|slug|max:255',
         // Volume Transacionado usando a própria moeda
-        'circulating_supply' => 'required',                                                                                                                                     
+        'circulating_supply' => 'required',
         'status' => 'required|min:0|max:1',
     ];
 

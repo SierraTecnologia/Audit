@@ -12,7 +12,7 @@ class Finger extends Base
      */
     protected bool $organizationPerspective = false;
 
-    protected string $table = 'log_fingers';       
+    protected $table = 'log_fingers';
 
     /**
      * The attributes that are mass assignable.
@@ -61,5 +61,4 @@ class Finger extends Base
     {
         return $this->belongsTo(\Illuminate\Support\Facades\Config::get('sitec.core.models.user', \App\Models\User::class), 'user_id', 'id');
     }
-
 }
