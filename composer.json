@@ -27,8 +27,8 @@
     ],
     "require": {
         "php": "^7.4",
-        "sierratecnologia/muleta": "dev-master",
-        "sierratecnologia/pedreiro": "dev-master",
+        "sierratecnologia/muleta": "^0.4.0",
+        "sierratecnologia/pedreiro": "^0.4.0",
         "kassner/log-parser": "^2.0",
         "rap2hpoutre/laravel-log-viewer": "^1.5",
         "laravel/telescope": "^3.0 || ^4.0",
@@ -48,7 +48,6 @@
         "post-update-cmd": [],
         "post-create-project-cmd": []
     },
-    "repositories": [{"type": "path","url":"../**","options":{"symlink": true}}],
     "minimum-stability": "dev",
     "prefer-stable": true,
     "extra": {
