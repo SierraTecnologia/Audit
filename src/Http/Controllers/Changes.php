@@ -37,29 +37,29 @@ class Changes extends Base
     {
         $options = [
             'model' => [
-                'label' => __('facilitador::changes.controller.search.type'),
+                'label' => __('pedreiro::changes.controller.search.type'),
                 'type' => 'text',
             ],
             'key' => [
-                'label' => __('facilitador::changes.controller.search.key'),
+                'label' => __('pedreiro::changes.controller.search.key'),
                 'type' => 'text',
             ],
             'action' => [
-                'label' => __('facilitador::changes.controller.search.action'),
+                'label' => __('pedreiro::changes.controller.search.action'),
                 'type' => 'select',
                 'options' => 'Audit\Models\Change::getActions()',
             ],
             'title' => [
-                'label' => __('facilitador::changes.controller.search.title'),
+                'label' => __('pedreiro::changes.controller.search.title'),
                 'type' => 'text',
             ],
             'changeable_id' => [
-                'label' => __('facilitador::changes.controller.search.admin'),
+                'label' => __('pedreiro::changes.controller.search.admin'),
                 'type' => 'select',
                 'options' => 'Audit\Models\Change::getAdmins()',
             ],
             'created_at' => [
-                'label' => __('facilitador::changes.controller.search.date'),
+                'label' => __('pedreiro::changes.controller.search.date'),
                 'type' => 'date',
             ],
         ];
@@ -107,10 +107,10 @@ class Changes extends Base
      */
     public function __construct()
     {
-        $this->title = __('facilitador::changes.controller.title');
-        $this->description = __('facilitador::changes.controller.description');
+        $this->title = __('pedreiro::changes.controller.title');
+        $this->description = __('pedreiro::changes.controller.description');
         $this->columns = [
-            __('facilitador::changes.controller.column.activity') => 'getAdminTitleHtmlAttribute',
+            __('pedreiro::changes.controller.column.activity') => 'getAdminTitleHtmlAttribute',
         ];
 
         parent::__construct();

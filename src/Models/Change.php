@@ -403,7 +403,7 @@ class Change extends Base
      */
     public function getHumanDateAttribute()
     {
-        $format = __('facilitador::changes.human_date');
+        $format = __('pedreiro::changes.human_date');
         if (is_null($format)) {
             $format = 'd \d\e F \d\e Y \à\s h\hi';
         }
@@ -442,7 +442,7 @@ class Change extends Base
         return sprintf(
             '<a href="%s"
             class="glyphicon glyphicon-filter js-tooltip"
-            title="' . __('facilitador::changes.standard_list.filter') . '"
+            title="' . __('pedreiro::changes.standard_list.filter') . '"
             data-placement="left"></a>',
             $this->filterUrl(['model' => $this->model, 'key' => $this->key]),
             strip_tags($this->getModelNameHtmlAttribute())
@@ -473,7 +473,7 @@ class Change extends Base
                 class="glyphicon glyphicon-export js-tooltip changes-modal-link"
                 title="%s" data-placement="left"></a>',
                 SupportURL::action('changes@edit', $this->id),
-                __('facilitador::changes.standard_list.view')
+                __('pedreiro::changes.standard_list.view')
             );
         }
 
@@ -482,7 +482,7 @@ class Change extends Base
             return sprintf(
                 '<span
             class="glyphicon glyphicon-export js-tooltip"
-            title="%s" data-placement="left"></span>', __('facilitador::changes.standard_list.no_changed')
+            title="%s" data-placement="left"></span>', __('pedreiro::changes.standard_list.no_changed')
             );
         }
     }
@@ -504,7 +504,7 @@ class Change extends Base
                 class="glyphicon glyphicon-bookmark js-tooltip"
                 title="%s" data-placement="left"></a>',
                 $this->preview_url,
-                __('facilitador::changes.standard_list.preview')
+                __('pedreiro::changes.standard_list.preview')
             );
         } else {
             return '<span class="glyphicon glyphicon-bookmark disabled"></span>';
