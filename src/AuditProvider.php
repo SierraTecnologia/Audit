@@ -137,7 +137,7 @@ class AuditProvider extends ServiceProvider
 
         // Register external packages
         $this->setProviders();
-        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->loadMigrationsFrom(__DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'database'.DIRECTORY_SEPARATOR.'migrations');
 
         // // Configs
         // $this->app->config->set('Audit.modules.Audit', include(__DIR__.'/config.php'));
