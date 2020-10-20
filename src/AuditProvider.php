@@ -111,7 +111,7 @@ class AuditProvider extends ServiceProvider
         /**
          * Transmissor; Routes
          */
-        $this->loadRoutesForRiCa(__DIR__.'/../routes');
+        $this->loadRoutesForRiCa(__DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'routes');
 
 
         // Log model change events after others in case they modified the record
@@ -163,7 +163,7 @@ class AuditProvider extends ServiceProvider
         $this->publishes(
             [
             // Paths
-            $this->getPublishesPath('config/sitec') => config_path('sitec'),
+            $this->getPublishesPath('config'.DIRECTORY_SEPARATOR.'sitec') => config_path('sitec'),
             // Files
             $this->getPublishesPath('config/activitylog.php') => config_path('activitylog.php'),
             $this->getPublishesPath('config/logging.php') => config_path('logging.php'),
@@ -200,8 +200,8 @@ class AuditProvider extends ServiceProvider
         $this->loadViewsFrom($viewsPath, 'audit');
         $this->publishes(
             [
-            $viewsPath => base_path('resources/views/vendor/audit'),
-            $this->getPublishesPath('views/laravel-log-viewer') => base_path('resources/views/vendor/laravel-log-viewer'),
+            $viewsPath => base_path('resources'.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'audit'),
+            $this->getPublishesPath('views/laravel-log-viewer') => base_path('resources'.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'laravel-log-viewer'),
             ],
             ['views',  'sitec', 'sitec-views', 'audit-views']
         );
@@ -209,7 +209,7 @@ class AuditProvider extends ServiceProvider
 
         // // Publish lanaguage files
         // $this->publishes([
-        //     $this->getResourcesPath('lang') => resource_path('lang/vendor/audit')
+        //     $this->getResourcesPath('lang') => resource_path('lang'.DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'audit')
         // ], 'lang');
 
         // // Load translations
@@ -221,7 +221,7 @@ class AuditProvider extends ServiceProvider
         // $translationsPath = $this->getResourcesPath('lang');
         // $this->loadTranslationsFrom($translationsPath, 'audit');
         // $this->publishes([
-        //     $translationsPath => resource_path('lang/vendor/audit'),
+        //     $translationsPath => resource_path('lang'.DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'audit'),
         // ], 'translations');// @todo ou lang, verificar (invez de translations)
     }
 
