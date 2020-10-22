@@ -24,7 +24,7 @@ use Facilitador\Input\Position;
 use Facilitador\Input\NestedModels;
 use Facilitador\Input\ModelValidator;
 use Facilitador\Models\Base as BaseModel;
-use Facilitador\Http\Controllers\Admin\Base as Controller;
+use Pedreiro\Http\Controllers\Admin\Base as Controller;
 use Pedreiro\Exceptions\ValidationFail;
 use Bkwld\Library\Laravel\Validator as BkwldLibraryValidator;
 
