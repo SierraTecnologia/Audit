@@ -42,13 +42,13 @@ return [
 
         'single' => [
             'driver' => 'single',
-            'path' => storage_path('logs'.DIRECTORY_SEPARATOR.'laravel.log'),
+            'path' => storage_path('logs'.DIRETORY_SEPARACTOR'laravel.log'),
             'level' => env('APP_LOG_LEVEL', 'info'),
         ],
 
         'daily' => [
             'driver' => 'daily',
-            'path' => storage_path('logs'.DIRECTORY_SEPARATOR.'laravel.log'),
+            'path' => storage_path('logs'.DIRETORY_SEPARACTOR'laravel.log'),
             'level' => env('APP_LOG_LEVEL', 'info'),
             'days' => 14,
         ],
