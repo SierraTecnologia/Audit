@@ -203,7 +203,7 @@ class AuditProvider extends ServiceProvider
             $viewsPath => base_path('resources'.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'audit'),
             $this->getPublishesPath('views/laravel-log-viewer') => base_path('resources'.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'laravel-log-viewer'),
             ],
-            ['views',  'sitec', 'sitec-views', 'audit-views']
+            ['views', 'sitec', 'sitec-views', 'ricasolucoes', 'ricasolucoes-views', 'audit-views']
         );
 
 
