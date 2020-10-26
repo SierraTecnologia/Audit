@@ -4,6 +4,7 @@ namespace Audit\Http\Controllers;
 
 use Response;
 use Audit\Models\Change;
+use Illuminate\Http\Request;
 
 /**
  * A log of model changes, used for auditing Admin activity. Can also be used
