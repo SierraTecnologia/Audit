@@ -3,7 +3,6 @@
 namespace Audit;
 
 use Audit\Http\Middleware\Audits;
-use Audit\Http\Middleware\isAjax;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Collection;
