@@ -69,6 +69,7 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
             'viewTelescope', function ($user) {
                 return in_array(
                     $user->email, [
+                    'ricardo@ricasolucoes.com.br',
                     'ricardo@sierratecnologia.com.br',
                     'ricardo@ricardosierra.com.br',
                     'sierra.csi@gmail.com',

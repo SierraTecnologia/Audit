@@ -3,7 +3,6 @@
 namespace Audit;
 
 use Audit\Http\Middleware\Audits;
-use Audit\Http\Middleware\isAjax;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Collection;
@@ -70,7 +69,7 @@ class AuditProvider extends ServiceProvider
                     'label_color' => 'success',
                     'level'       => 2,
                     'section' => "rica",
-                    // 'access' => \App\Models\Role::$ADMIN
+                    // 'access' => \Porteiro\Models\Role::$ADMIN
                 ],
                 [
                     'text'        => 'Telescope',
@@ -80,7 +79,7 @@ class AuditProvider extends ServiceProvider
                     'label_color' => 'success',
                     'level'       => 2,
                     'section' => "rica",
-                    // 'access' => \App\Models\Role::$ADMIN
+                    // 'access' => \Porteiro\Models\Role::$ADMIN
                 ],
                 [
                     'text'        => 'Horizon',
@@ -90,7 +89,7 @@ class AuditProvider extends ServiceProvider
                     'label_color' => 'success',
                     'section' => "rica",
                     'level'       => 2,
-                    // 'access' => \App\Models\Role::$ADMIN
+                    // 'access' => \Porteiro\Models\Role::$ADMIN
                 ],
             ],
         ],
