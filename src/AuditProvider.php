@@ -51,46 +51,44 @@ class AuditProvider extends ServiceProvider
      * Rotas do Menu
      */
     public static $menuItens = [
-        'System' => [
+        [
+            'text' => 'Auditoria',
+            'icon' => 'fas fa-fw fa-search',
+            'icon_color' => "blue",
+            'label_color' => "success",
+            'section' => "rica",
+            'level'       => 2, // 0 (Public), 1, 2 (Admin) , 3 (Root)
+        ],
+        'Auditoria' => [
             [
-                'text' => 'Audits',
-                'icon' => 'fas fa-fw fa-search',
-                'icon_color' => "blue",
-                'label_color' => "success",
+                'text'        => 'Logs',
+                'route'       => 'admin.tracking.larametrics::metrics.index',
+                'icon'        => 'dashboard',
+                'icon_color'  => 'blue',
+                'label_color' => 'success',
+                'level'       => 2,
                 'section' => "rica",
-                'level'       => 2, // 0 (Public), 1, 2 (Admin) , 3 (Root)
+                // 'access' => \Porteiro\Models\Role::$ADMIN
             ],
-            'Audits' => [
-                [
-                    'text'        => 'Logs',
-                    'route'       => 'admin.tracking.larametrics::metrics.index',
-                    'icon'        => 'dashboard',
-                    'icon_color'  => 'blue',
-                    'label_color' => 'success',
-                    'level'       => 2,
-                    'section' => "rica",
-                    // 'access' => \Porteiro\Models\Role::$ADMIN
-                ],
-                [
-                    'text'        => 'Telescope',
-                    'route'       => 'telescope',
-                    'icon'        => 'dashboard',
-                    'icon_color'  => 'blue',
-                    'label_color' => 'success',
-                    'level'       => 2,
-                    'section' => "rica",
-                    // 'access' => \Porteiro\Models\Role::$ADMIN
-                ],
-                [
-                    'text'        => 'Horizon',
-                    'route'       => 'horizon.index',
-                    'icon'        => 'dashboard',
-                    'icon_color'  => 'blue',
-                    'label_color' => 'success',
-                    'section' => "rica",
-                    'level'       => 2,
-                    // 'access' => \Porteiro\Models\Role::$ADMIN
-                ],
+            [
+                'text'        => 'Telescope',
+                'route'       => 'telescope',
+                'icon'        => 'dashboard',
+                'icon_color'  => 'blue',
+                'label_color' => 'success',
+                'level'       => 2,
+                'section' => "rica",
+                // 'access' => \Porteiro\Models\Role::$ADMIN
+            ],
+            [
+                'text'        => 'Horizon',
+                'route'       => 'horizon.index',
+                'icon'        => 'dashboard',
+                'icon_color'  => 'blue',
+                'label_color' => 'success',
+                'section' => "rica",
+                'level'       => 2,
+                // 'access' => \Porteiro\Models\Role::$ADMIN
             ],
         ],
     ];
