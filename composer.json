@@ -57,5 +57,8 @@
                 "Audit\\AuditProvider"
             ]
         }
+    },
+    "require-dev": {
+        "phpro/grumphp": "^1.3"
     }
 }
