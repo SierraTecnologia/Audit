@@ -9,7 +9,7 @@ use Facilitador;
 use Event;
 use Former;
 use Request;
-use SupportURL;
+use PedreiroURL;
 use Redirect;
 use Response;
 use stdClass;
