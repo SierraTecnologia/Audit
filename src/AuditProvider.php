@@ -56,6 +56,7 @@ class AuditProvider extends ServiceProvider
             'icon' => 'fas fa-fw fa-search',
             'icon_color' => "blue",
             'label_color' => "success",
+            'order' => 4550,
             'section' => "rica",
             'level'       => 2, // 0 (Public), 1, 2 (Admin) , 3 (Root)
         ],
@@ -67,6 +68,7 @@ class AuditProvider extends ServiceProvider
                 'icon_color'  => 'blue',
                 'label_color' => 'success',
                 'level'       => 2,
+                'order' => 4550,
                 'section' => "rica",
                 // 'access' => \Porteiro\Models\Role::$ADMIN
             ],
@@ -77,6 +79,7 @@ class AuditProvider extends ServiceProvider
                 'icon_color'  => 'blue',
                 'label_color' => 'success',
                 'level'       => 2,
+                'order' => 4550,
                 'section' => "rica",
                 // 'access' => \Porteiro\Models\Role::$ADMIN
             ],
@@ -86,6 +89,7 @@ class AuditProvider extends ServiceProvider
                 'icon'        => 'dashboard',
                 'icon_color'  => 'blue',
                 'label_color' => 'success',
+                'order' => 4550,
                 'section' => "rica",
                 'level'       => 2,
                 // 'access' => \Porteiro\Models\Role::$ADMIN
@@ -238,29 +242,5 @@ class AuditProvider extends ServiceProvider
     private function getDistPath($folder = '')
     {
         return __DIR__.'/../dist/'.$folder;
-    }
-
-    /**
-     * Load Alias and Providers
-     */
-    private function setProviders()
-    {
-        $this->setDependencesAlias();
-        (new Collection(self::$providers))->map(
-            function ($provider) {
-                if (class_exists($provider)) {
-                    $this->app->register($provider);
-                }
-            }
-        );
-    }
-    private function setDependencesAlias()
-    {
-        $loader = AliasLoader::getInstance();
-        (new Collection(self::$aliasProviders))->map(
-            function ($class, $alias) use ($loader) {
-                $loader->alias($alias, $class);
-            }
-        );
     }
 }
