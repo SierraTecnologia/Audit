@@ -53,11 +53,11 @@ class AuditProvider extends ServiceProvider
     public static $menuItens = [
         [
             'text' => 'Auditoria',
-            'icon' => 'fas fa-fw fa-search',
+            'icon' => 'fas fa-fw fa-chart-area',
             'icon_color' => "blue",
             'label_color' => "success",
-            'order' => 4550,
-            'section' => "rica",
+            'order' => 2550,
+            'section' => "admin",
             'level'       => 2, // 0 (Public), 1, 2 (Admin) , 3 (Root)
         ],
         'Auditoria' => [
@@ -68,8 +68,8 @@ class AuditProvider extends ServiceProvider
                 'icon_color'  => 'blue',
                 'label_color' => 'success',
                 'level'       => 2,
-                'order' => 4550,
-                'section' => "rica",
+                'order' => 2550,
+                'section' => "admin",
                 // 'access' => \Porteiro\Models\Role::$ADMIN
             ],
             [
@@ -79,8 +79,8 @@ class AuditProvider extends ServiceProvider
                 'icon_color'  => 'blue',
                 'label_color' => 'success',
                 'level'       => 2,
-                'order' => 4550,
-                'section' => "rica",
+                'order' => 2550,
+                'section' => "admin",
                 // 'access' => \Porteiro\Models\Role::$ADMIN
             ],
             [
@@ -89,8 +89,8 @@ class AuditProvider extends ServiceProvider
                 'icon'        => 'dashboard',
                 'icon_color'  => 'blue',
                 'label_color' => 'success',
-                'order' => 4550,
-                'section' => "rica",
+                'order' => 2550,
+                'section' => "admin",
                 'level'       => 2,
                 // 'access' => \Porteiro\Models\Role::$ADMIN
             ],
