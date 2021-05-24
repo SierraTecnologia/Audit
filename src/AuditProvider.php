@@ -56,19 +56,19 @@ class AuditProvider extends ServiceProvider
             'icon' => 'fas fa-fw fa-chart-area',
             'icon_color' => "blue",
             'label_color' => "success",
-            'order' => 2550,
-            'section' => "admin",
+            'order' => 4550,
+            'section' => "rica",
             'level'       => 2, // 0 (Public), 1, 2 (Admin) , 3 (Root)
         ],
         'Auditoria' => [
             [
                 'text'        => 'Logs',
-                'route'       => 'admin.tracking.larametrics::metrics.index',
+                'route'       => 'rica.tracking.larametrics::metrics.index',
                 'icon'        => 'dashboard',
                 'icon_color'  => 'blue',
                 'label_color' => 'success',
                 'level'       => 2,
-                'order' => 2550,
+                'order' => 4550,
                 'section' => "admin",
                 // 'access' => \Porteiro\Models\Role::$ADMIN
             ],
@@ -79,8 +79,8 @@ class AuditProvider extends ServiceProvider
                 'icon_color'  => 'blue',
                 'label_color' => 'success',
                 'level'       => 2,
-                'order' => 2550,
-                'section' => "admin",
+                'order' => 4550,
+                'section' => "rica",
                 // 'access' => \Porteiro\Models\Role::$ADMIN
             ],
             [
@@ -89,8 +89,8 @@ class AuditProvider extends ServiceProvider
                 'icon'        => 'dashboard',
                 'icon_color'  => 'blue',
                 'label_color' => 'success',
-                'order' => 2550,
-                'section' => "admin",
+                'order' => 4550,
+                'section' => "rica",
                 'level'       => 2,
                 // 'access' => \Porteiro\Models\Role::$ADMIN
             ],
