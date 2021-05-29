@@ -8,7 +8,7 @@ use Config;
 use PedreiroURL;
 use Illuminate\Support\Str;
 use Pedreiro\Template\Input\Search;
-use Bkwld\Library\Utils\Text;
+use Muleta\Library\Utils\Text;
 use Illuminate\Database\Eloquent\Model;
 use Audit\Models\Base;
 use App\Models\User;
