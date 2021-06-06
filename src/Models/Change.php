@@ -5,10 +5,10 @@ namespace Audit\Models;
 use DB;
 use Facilitador;
 use Config;
-use SupportURL;
+use PedreiroURL;
 use Illuminate\Support\Str;
 use Pedreiro\Template\Input\Search;
-use Bkwld\Library\Utils\Text;
+use Muleta\Library\Utils\Text;
 use Illuminate\Database\Eloquent\Model;
 use Audit\Models\Base;
 use App\Models\User;
@@ -456,7 +456,7 @@ class Change extends Base
      */
     public function filterUrl($query)
     {
-        return SupportURL::action('changes').'?'.Search::query($query);
+        return PedreiroURL::action('changes').'?'.Search::query($query);
     }
 
     /**
@@ -472,7 +472,7 @@ class Change extends Base
                 '<a href="%s"
                 class="glyphicon glyphicon-export js-tooltip changes-modal-link"
                 title="%s" data-placement="left"></a>',
-                SupportURL::action('changes@edit', $this->id),
+                PedreiroURL::action('changes@edit', $this->id),
                 __('pedreiro::changes.standard_list.view')
             );
         }

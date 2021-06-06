@@ -26,7 +26,7 @@
         }
     ],
     "require": {
-        "php": "^7.4",
+        "php": "^7.2|^8.0",
         "sierratecnologia/muleta": "^0.4.0",
         "sierratecnologia/pedreiro": "^0.4.0",
         "kassner/log-parser": "^2.0",
@@ -56,5 +56,8 @@
                 "Audit\\AuditProvider"
             ]
         }
+    },
+    "require-dev": {
+        "phpro/grumphp": "^1.3"
     }
 }
