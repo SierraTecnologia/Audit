@@ -57,10 +57,13 @@ class LogWritten extends Notification implements ShouldQueue
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed $notifiable
-     * @return array
+     * @param mixed $notifiable
+     *
+     * @return null|string[]
+     *
+     * @psalm-return array{0: 'mail'|'slack', 1?: 'slack'}|null
      */
-    public function via($notifiable)
+    public function via($notifiable): ?array
     {
         switch($notifiable->notify_by) {
         case 'email':

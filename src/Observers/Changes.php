@@ -30,6 +30,8 @@ class Changes
      *                        -
      *                        Audit\Models\Base
      *                        $model
+     *
+     * @return void
      */
     public function handle($event, $payload)
     {
@@ -77,7 +79,7 @@ class Changes
         return app('facilitador.user');
     }
 
-    protected function isToIgnore($model, $event)
+    protected function isToIgnore($model, string $event): bool
     {
         // Don't log changes to pivot models.  Even though a user may have initiated
         // this, it's kind of meaningless to them.  These events can happen when a

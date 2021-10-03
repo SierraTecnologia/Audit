@@ -4,7 +4,10 @@ namespace Audit\Services;
 
 class Service
 {
-    public static function getSingleton()
+    /**
+     * @return static
+     */
+    public static function getSingleton(): self
     {
         //@todo Ativar cache de acordo com business
         return new static();

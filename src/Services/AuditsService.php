@@ -13,7 +13,7 @@ class AuditsService
         $this->model = $model;
     }
 
-    public function log($request)
+    public function log($request): void
     {
         $requestData = json_encode(
             [

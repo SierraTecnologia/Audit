@@ -53,9 +53,9 @@ class Change extends Base
     /**
      * Get the admin associated with the change
      *
-     * @return Illuminate\Database\Eloquent\Relations\Relation
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function admin()
+    public function admin(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(\Illuminate\Support\Facades\Config::get('sitec.core.models.user', \App\Models\User::class));
     }
@@ -64,8 +64,10 @@ class Change extends Base
      * The polymorphic relation back to the parent model
      *
      * @var mixed
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
      */
-    public function loggable()
+    public function loggable(): \Illuminate\Database\Eloquent\Relations\MorphTo
     {
         return $this->morphTo('loggable', 'model', 'key');
     }
@@ -177,12 +179,13 @@ class Change extends Base
      * @param Model  $model  Th
      * @param string $action
      * @param User   $admin
+     * @param array|null $changed
      */
     static protected function createLog(
         Model $model,
         $action,
         User $admin = null,
-        $changed = null
+        ?array $changed = null
     ) {
         return static::create(
             [
@@ -274,7 +277,7 @@ class Change extends Base
     /**
      * Format the the activity like a sentence
      *
-     * @return string HTML
+     * @return array|null|string HTML
      */
     public function getAdminTitleHtmlAttribute()
     {
@@ -363,7 +366,7 @@ class Change extends Base
      * Get the title of the model. Perhaps in the future there will be more smarts
      * here, like generating a link to the edit view
      *
-     * @return string HTML
+     * @return null|string HTML
      */
     public function getLinkedTitleAttribute()
     {
@@ -453,8 +456,10 @@ class Change extends Base
      * Make a link to filter the result set
      *
      * @return string
+     *
+     * @param array $query
      */
-    public function filterUrl($query)
+    public function filterUrl(array $query)
     {
         return PedreiroURL::action('changes').'?'.Search::query($query);
     }

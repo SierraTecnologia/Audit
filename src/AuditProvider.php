@@ -99,8 +99,10 @@ class AuditProvider extends ServiceProvider
 
     /**
      * Alias the services in the boot.
+     *
+     * @return void
      */
-    public function boot(Router $router)
+    public function boot(Router $router): void
     {
         // Push middleware to web group
         $router->pushMiddlewareToGroup('web', Audits::class);
@@ -194,7 +196,7 @@ class AuditProvider extends ServiceProvider
         $this->loadTranslations();
     }
 
-    private function loadViews()
+    private function loadViews(): void
     {
         // View namespace
         $viewsPath = $this->getResourcesPath('views');
@@ -217,7 +219,7 @@ class AuditProvider extends ServiceProvider
         // $this->loadTranslationsFrom($this->getResourcesPath('lang'), 'audit');
     }
     
-    private function loadTranslations()
+    private function loadTranslations(): void
     {
         // $translationsPath = $this->getResourcesPath('lang');
         // $this->loadTranslationsFrom($translationsPath, 'audit');
@@ -228,18 +230,22 @@ class AuditProvider extends ServiceProvider
 
     /**
      * Configs Paths
+     *
+     * @param string $folder
+     *
+     * @return string
      */
-    private function getResourcesPath($folder)
+    private function getResourcesPath(string $folder): string
     {
         return __DIR__.'/../resources/'.$folder;
     }
 
-    private function getPublishesPath($folder)
+    private function getPublishesPath(string $folder): string
     {
         return __DIR__.'/../publishes/'.$folder;
     }
 
-    private function getDistPath($folder = '')
+    private function getDistPath($folder = ''): string
     {
         return __DIR__.'/../dist/'.$folder;
     }
