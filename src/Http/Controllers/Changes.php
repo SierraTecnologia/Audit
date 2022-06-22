@@ -85,7 +85,7 @@ class Changes extends Base
      * this method / action so that a new routing rule doesn't need to be created
      *
      * @param  int $id Model key
-     * @return Illuminate\Http\Response
+     * @return \Illuminate\Http\Response
      */
     public function edit(Request $request, $id)
     {

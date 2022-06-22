@@ -37,7 +37,7 @@ trait Loggable
     /**
      * Get the polymorphic relationship to Changes
      *
-     * @return Illuminate\Database\Eloquent\Relations\Relation
+     * @return \Illuminate\Database\Eloquent\Relations\Relation
      */
     public function changes()
     {
