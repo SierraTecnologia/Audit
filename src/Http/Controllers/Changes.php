@@ -34,7 +34,7 @@ class Changes extends Base
      *
      * @return array
      */
-    public function search()
+    public function search(Request $request)
     {
         $options = [
             'model' => [
