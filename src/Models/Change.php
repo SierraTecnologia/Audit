@@ -53,7 +53,7 @@ class Change extends Base
     /**
      * Get the admin associated with the change
      *
-     * @return Illuminate\Database\Eloquent\Relations\Relation
+     * @return \Illuminate\Database\Eloquent\Relations\Relation
      */
     public function admin()
     {
@@ -84,7 +84,7 @@ class Change extends Base
      * Default ordering by descending time, designed to be overridden
      *
      * @param  Illuminate\Database\Query\Builder $query
-     * @return Illuminate\Database\Query\Builder
+     * @return \Illuminate\Database\Query\Builder
      */
     public function scopeOrdered($query)
     {
